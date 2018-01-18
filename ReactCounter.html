@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React getting started</title>
+  </head>
+  <body>
+    <!-- Root container for react components -->
+    <div id='root'></div>
+    
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    
+    <script type="text/babel">
+      class Counter extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {counter: 0};
+        }
+        buttonPressed = () => {
+          this.setState((prevState) => {
+            return {counter: prevState.counter + 1}
+          });
+        }
+        minusNappula = () => {
+            this.setState((prevState) => {
+                return {counter: prevState.counter - 1}
+            });
+        }
+        resetNappula = () => {
+            this.setState((prevState) => {
+                return {counter: prevState.counter = 0}
+            });
+        }
+        
+        render() { 
+          return (
+            <div>
+              <div>Counter: {this.state.counter}</div>
+                    <button onClick={this.buttonPressed}>+</button>
+                  <button onClick={this.minusNappula}>-</button>     
+                <button onClick={this.resetNappula}>Reset</button>
+            </div>
+          );
+        }
+      }
+      
+      ReactDOM.render(<Counter />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
