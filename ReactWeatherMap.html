@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>React getting started</title>
+  </head>
+  <body>
+    <!-- Root container for react components -->
+    <div id='root'></div>
+    
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    
+    <script type="text/babel">
+      class OpenWeather extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {weather: '', temp: '', weathericon:''};
+        }
+       
+          componentDidMount() {
+              fetch('https://api.openweathermap.org/data/2.5/weather?q=Helsinki&units=metric&APPID=6ab1df036abc6e5ee1324319a3497b56')
+                  .then((response) => response.json())
+                  .then((responseData) => {
+                  console.log(responseData);
+                  this.setState({
+                      weather: responseData.weather[0].main,
+                      temp: responseData.main.temp,
+                      url: responseData.weather[0].icon
+                    
+                  });
+              });
+          }
+        
+        render() { 
+            const imageurl='http://openweathermap.org/img/w/' +
+                  this.state.url + '.png';
+          return (
+            <div >
+              <div>Weather: {this.state.weather}</div>
+                  <div>Temperature: {this.state.temp} </div>
+                  <img alt="weathericon" src={imageurl}/>
+            </div>
+          );
+        }
+      }
+      
+  ReactDOM.render(<OpenWeather />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
