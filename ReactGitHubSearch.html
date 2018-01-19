@@ -12,30 +12,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
     
+      
     <script type="text/babel">
       class GitHubRepositoryList extends React.Component {
         constructor(props) {
           super(props);
-          this.state = {listItems: [], search: ''};   
+          this.state = {listItems: [], haku: ''};   
         }
-   
-          inputChanged = (event) => {
-              this.setState({search: event.target.value});
-              return search;
-          };
           
-        componentDidMount() {
-          fetch('https://api.github.com/search/repositories?q=' + this.search)
+          
+   //hakusanan päivittäminen stateen
+          inputChanged = (event) => {
+            this.setState({haku: event.target.value});
+  }
+          
+
+//Haku rajapinnasta + hakusana
+        componentDidMount = (event) => {
+            event.preventDefault();      
+            fetch('https://api.github.com/search/repositories?q=' + this.state.haku)
           .then((response) => response.json()) 
           .then((responseData) => { 
             this.setState({ 
               listItems: responseData.items
             }); 
           })     
-          
         }
 
-        
+        // renderöinti, API haun pilkkominen - mitä näytetään
         render() {
           const itemRows = this.state.listItems.map((repository) => 
               <tr key={repository.name}>
@@ -44,10 +48,12 @@
               </tr>
             )
            
+                                            
+        // hakuboksi ja hakunäppäin: onChange kutsuu jokaisella näpäytyksellä inputChangedia, joka päivittää staten jatkuvasti + renderöinti uudestaan                             
           return (
             <div>
               <h2>Repositories</h2>
-            <div><input type="text" value={this.state.search} onChange={this.inputChanged} /><button onClick={this.componentDidMount}>Search</button></div>                              
+            <div><input type="text" value={this.state.haku} onChange={this.inputChanged} /><button onClick={this.componentDidMount}>Search</button></div>                              
               <table>
                 <tbody>
                   <tr><th>Name</th><th>URL</th></tr>
