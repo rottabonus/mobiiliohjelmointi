@@ -18,6 +18,9 @@
         constructor(props) {
           super(props);
           this.state = {listItems: [], haku: ''};   
+            
+            this.inputChanged = this.inputChanged.bind(this);
+            this.componentDidMount = this.componentDidMount.bind(this);
         }
           
           
