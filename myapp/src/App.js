@@ -18,6 +18,15 @@ class App extends Component {
       todos: [...this.state.todos,{description: this.state.description, date: this.state.date}]
     });
   }
+  
+  removeTodo(index){
+      this.setState({
+      todos: this.state.todos.filter((todo, i) => i !== index)
+          
+      }); 
+      
+                    }
+  
 
   render() {
     return (
@@ -35,15 +44,16 @@ class App extends Component {
           </form>
         </div>
         
-        //MUUTA TÄMÄ!!!
+        
         <div>
         <table>
         <tbody>
         <tr><th>Date</th><th>Description</th></tr>
-            {this.state.todos.map((item, index) =>
+            {this.state.todos.map((todo, index) =>
                 <tr key={index}>
-                <td>{item.description}</td>
-                <td>{item.date}</td></tr>
+                <td>{todo.description}</td>
+                <td>{todo.date}</td>
+                <td><button onClick={(event) => this.removeTodo(index)} key={todo}>Delete</button></td></tr>
 )}
 </tbody>
 </table>
