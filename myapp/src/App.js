@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import TodoTable from './TodoTable.js';
 
 class App extends Component {
   constructor(props) {
@@ -19,13 +20,15 @@ class App extends Component {
     });
   }
   
-  removeTodo(index){
-      this.setState({
-      todos: this.state.todos.filter((todo, i) => i !== index)
+   
+   
+   removeTodo(index){
+        console.log({index});
+     // this.setState({
+     // todos: this.state.todos.filter((todo, i) => i !== index)
           
-      }); 
-      
-                    }
+     // }); 
+   }
   
 
   render() {
@@ -45,19 +48,7 @@ class App extends Component {
         </div>
         
         
-        <div>
-        <table>
-        <tbody>
-        <tr><th>Date</th><th>Description</th></tr>
-            {this.state.todos.map((todo, index) =>
-                <tr key={index}>
-                <td>{todo.description}</td>
-                <td>{todo.date}</td>
-                <td><button onClick={(event) => this.removeTodo(index)} key={todo}>Delete</button></td></tr>
-)}
-</tbody>
-</table>
-</div>
+        <TodoTable todos={this.state.todos} removeTodo={this.removeTodo} />
 </div>
 
 );
