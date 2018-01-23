@@ -19,8 +19,7 @@
           super(props);
           this.state = {listItems: [], haku: ''};   
             
-            this.inputChanged = this.inputChanged.bind(this);
-            this.componentDidMount = this.componentDidMount.bind(this);
+            
         }
           
           
@@ -31,8 +30,8 @@
           
 
 //Haku rajapinnasta + hakusana
-        componentDidMount = (event) => {
-            event.preventDefault();      
+        searchRepos = (event) => {
+                 
             fetch('https://api.github.com/search/repositories?q=' + this.state.haku)
           .then((response) => response.json()) 
           .then((responseData) => { 
@@ -56,7 +55,7 @@
           return (
             <div>
               <h2>Repositories</h2>
-            <div><input type="text" value={this.state.haku} onChange={this.inputChanged} /><button onClick={this.componentDidMount}>Search</button></div>                              
+            <div><input type="text" value={this.state.haku} onChange={this.inputChanged} /><button onClick={this.searchRepos}>Search</button></div>                              
               <table>
                 <tbody>
                   <tr><th>Name</th><th>URL</th></tr>
