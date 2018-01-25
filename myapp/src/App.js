@@ -24,10 +24,10 @@ class App extends Component {
    
    removeTodo(index){
         console.log({index});
-     // this.setState({
-     // todos: this.state.todos.filter((todo, i) => i !== index)
+      this.setState({
+      todos: [this.state.todos.filter((todo, i) => i !== index)]
           
-     // }); 
+      }); 
    }
   
 
