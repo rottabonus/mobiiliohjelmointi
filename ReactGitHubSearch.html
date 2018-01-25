@@ -43,8 +43,8 @@
 
         // renderöinti, API haun pilkkominen - mitä näytetään
         render() {
-          const itemRows = this.state.listItems.map((repository) => 
-              <tr key={repository.name}>
+          const itemRows = this.state.listItems.map((repository, index) => 
+              <tr key={index}>
                 <td>{repository.full_name}</td>
                 <td>{repository.url}</td>
               </tr>
