@@ -1,15 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
+import {StackNavigator} from 'react-navigation';
 
-export default class App extends React.Component {
-
-
+export default class SettingScreen extends React.Component {
+   static navigationOptions = {title: 'Settings'};
+    
   render() {
     return (
-        <View style={styles.container}>
-        <Text> L u L </Text>
-        </View>
-        );
+      <View style={styles.container}>
+        <Text>
+        Yello my friend, this is Settings
+        </Text>
+      </View>
+    );
   }
 }
 
