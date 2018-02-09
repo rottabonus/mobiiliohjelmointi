@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
-import {StackNavigator} from 'react-navigation';
 
 export default class HomeScreen extends React.Component {
    static navigationOptions = {title: 'Home'};
@@ -9,9 +8,12 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text>
-        Yello my friend
+        Yello my friend, this is HomeScreen
         </Text>
-        <Button onPress={() => navigate('Settings')} title="Settings"/>
+        <View style={styles.buttons}>
+        <Button onPress={() => this.props.navigation.navigate('Setting')} title="Settings"/>
+        <Button onPress={() => this.props.navigation.navigate('GuessingGame')} title="GuessingGame"/>
+            </View>
       </View>
     );
   }
@@ -22,10 +24,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-      paddingTop: 100,
-      paddingBottom: 100
+    justifyContent: 'center'
   },
-    
+    buttons: {
+        flexDirection: 'row',
+        margin: 20
+    }
     
 });

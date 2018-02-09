@@ -1,17 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
+import {StackNavigator} from 'react-navigation';
+import HomeScreen from './components/HomeScreen';
+import SettingScreen from './components/SettingScreen';
+import Arvauspeli from './components/Arvauspeli';
 
 export default class App extends React.Component {
 
 
   render() {
     return (
-        <View style={styles.container}>
-        <Text> L u L </Text>
-        </View>
+        <Navigaattori/>
         );
   }
 }
+
+const Navigaattori = StackNavigator({
+    Home: {screen: HomeScreen},
+    Setting: {screen: SettingScreen},
+    GuessingGame: {screen: Arvauspeli}
+})
 
 const styles = StyleSheet.create({
   container: {

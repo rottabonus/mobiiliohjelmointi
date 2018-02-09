@@ -1,7 +1,8 @@
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, View, TextInput, Button, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, Image } from 'react-native';
 
 export default class Arvauspeli extends React.Component {
+     static navigationOptions = {title: 'GuessingGame'};
     constructor(props){
         super(props);
         this.state = {arvaus: '', vastaus: Math.floor(Math.random() * 100) + 1, text: 'Arvaa numeroa väliltä 1-100', arvausKerroin: 1, voitot: 0};
@@ -32,7 +33,7 @@ export default class Arvauspeli extends React.Component {
     return (
       <View style={styles.container}>
         <Image style={{width:250, height: 300}}
-        source={require('./PinguLokoEka.png')} />
+        source={require('../PinguLokoEka.png')} />
         <Text>{this.state.text}</Text>
         <Text> Arvaukset: {this.state.arvausKerroin -1} Voitot: {this.state.voitot}</Text>
         <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}} keyboardType='numeric' onChangeText={(arvaus) => this.setState({arvaus})} value={this.state.arvaus} />
@@ -52,8 +53,5 @@ const styles = StyleSheet.create({
     
 });
 
-
- 
-AppRegistry.registerComponent('Arvauspeli', () => Arvauspeli);
 
 
