@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, Image } from 'react-native';
 
 export default class Arvauspeli extends React.Component {
-     static navigationOptions = {title: 'GuessingGame'};
+     static navigationOptions = {title: 'Arvauspeli'};
     constructor(props){
         super(props);
         this.state = {arvaus: '', vastaus: Math.floor(Math.random() * 100) + 1, text: 'Arvaa numeroa väliltä 1-100', arvausKerroin: 1, voitot: 0};
@@ -38,10 +38,14 @@ export default class Arvauspeli extends React.Component {
         <Text> Arvaukset: {this.state.arvausKerroin -1} Voitot: {this.state.voitot}</Text>
         <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}} keyboardType='numeric' onChangeText={(arvaus) => this.setState({arvaus})} value={this.state.arvaus} />
         <Button onPress={this.buttonPressed} title="Arvaa numeroa"/>
+             <Button onPress={() => this.props.navigation.navigate('GuessingHistory', {voitot: this.state.voitot})} title="Guessing History"/>
       </View>
+        
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
