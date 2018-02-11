@@ -34,7 +34,7 @@ export default class Laskinhistoria extends React.Component {
        <View style={styles.buttons}>
         <Button onPress={this.laskeMinus} title="-"/>
          <Button onPress={this.laskePlus} title="+"/>
-             <Button onPress={(historia) => this.props.navigation.navigate('LaskinHistory', {historia: this.state.historia})} title="Laskin History"/>
+             <Button onPress={(historia) => this.props.navigation.navigate('LaskinHistory', {historia: this.state.historia})} title="Lasketut"/>
         </View>
      </View>
    );
