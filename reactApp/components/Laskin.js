@@ -23,9 +23,9 @@ export default class Laskinhistoria extends React.Component {
     
   render() {
    return(
-       <View style={styles.container}>
        <View>
-       <Text>Vastaus: {this.state.vastaus}</Text>
+       <View>
+       <Text style={{alignSelf: 'center'}}>Vastaus: {this.state.vastaus}</Text>
        </View>
        <View style={styles.inputs}>
         <TextInput keyboardType='numeric' onChangeText={(numero1) => this.setState({numero1})} value={this.state.numero1} />
@@ -36,7 +36,7 @@ export default class Laskinhistoria extends React.Component {
          <Button onPress={this.laskePlus} title="+"/>
              <Button onPress={(historia) => this.props.navigation.navigate('LaskinHistory', {historia: this.state.historia})} title="Laskin History"/>
         </View>
-       </View>
+     </View>
    );
   }
    
@@ -47,7 +47,6 @@ export default class Laskinhistoria extends React.Component {
         container: {
             flex: 1,
             backgroundColor: 'rgba(196, 214, 213, 0.74)',
-            alignItems: 'center',
             paddingTop: 40
         },
      
@@ -55,12 +54,17 @@ export default class Laskinhistoria extends React.Component {
             width: 50,
             height: 50,
             borderColor: 'gray', 
-            borderWidth: 1
+            borderWidth: 1,
+            justifyContent: 'center',
+            alignSelf: 'center'
+            
     },
      
         buttons: {
             flexDirection: 'row',
             padding: 10,
+            alignSelf: 'center',
+            justifyContent: 'space-around'
         }
     })
 

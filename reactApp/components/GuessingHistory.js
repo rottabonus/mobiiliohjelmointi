@@ -2,14 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
 export default class LaskinHistory extends React.Component {
-   static navigationOptions = {title: 'GuessingHistory'};
+   static navigationOptions = {title: 'Arvaukset'};
     
   render() {
       const { params } = this.props.navigation.state;
     return (
       <View style={styles.container}>
-        <Text>
-        Yello my friend, this is GuessingHistory
+        <Text style={styles.text}>
         Olet voittanut {params.voitot} kertaa
         </Text>
       </View>
@@ -26,6 +25,10 @@ const styles = StyleSheet.create({
       paddingTop: 100,
       paddingBottom: 100
   },
+    text: {
+        textAlign: 'center'
+        
+    }
     
     
 });

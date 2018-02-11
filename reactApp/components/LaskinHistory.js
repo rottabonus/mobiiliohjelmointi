@@ -2,14 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList} from 'react-native';
 
 export default class LaskinHistory extends React.Component {
-   static navigationOptions = {title: 'LaskinHistory'};
+   static navigationOptions = {title: 'Lasketut laskut'};
     
   render() {
       const { params } = this.props.navigation.state;
     return (
       <View style={styles.container}>
-        <Text>
-        Yello my friend, this is LaskinHistory
+        <Text style={styles.text}>
         Olet laskenut seuraavat laskut: </Text>
        <View>
              <FlatList data={params.historia}
@@ -30,6 +29,9 @@ const styles = StyleSheet.create({
       paddingTop: 100,
       paddingBottom: 100
   },
+    text: {
+        textAlign: 'center'
+    }
     
     
 });
