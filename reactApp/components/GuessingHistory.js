@@ -9,7 +9,8 @@ export default class LaskinHistory extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-        Olet voittanut {params.voitot} kertaa
+        Olet voittanut {params.voitotSync} kertaa ja
+        ennätyksesi on {params.highScore} !
         </Text>
       </View>
     );

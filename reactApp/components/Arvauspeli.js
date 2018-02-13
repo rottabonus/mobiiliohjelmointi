@@ -5,69 +5,97 @@ export default class Arvauspeli extends React.Component {
      static navigationOptions = {title: 'Arvauspeli'};
     constructor(props){
         super(props);
-        this.state = {arvaus: '', text: 'Arvaa numeroa väliltä 1-100', voitot: 0};
+        this.state = {arvaus: '', text: 'Arvaa numeroa väliltä 1-100'};
     }
+    
+    
+    componentWillMount(){
+    this.check();
+ }
     
     check(){
 
     AsyncStorage.getItem('highScore').then((highScore) => {
+        if(highScore) {
         this.setState({highScore: highScore})
+        } else {
+            this.setState({highScore: '0'})
+        }
+    })
+    
+    AsyncStorage.getItem('voitotSync').then((voitot) => {
+        if (voitot) {
+            this.setState({voitotSync: voitot})
+        } else {
+            this.setState({voitotSync: '0'});
+        }
     })
   }
 
-  componentWillMount(){
-    this.check();
-  }
-    
-//clearData(){
-//    AsyncStorage.clear();
-//}    
-    
-setHighScore(){
-    let highScore = this.state.arvausKerroin
-    let scoreString = highScore.toString()
-    AsyncStorage.setItem('highScore', scoreString)
-    this.setState({highScore: scoreString})
-}
-    
-    
-seeHighScore = async () => {
-    try {
-        let highScore = await AsyncStorage.getItem('highScore');
-        let highScoreInt = parseInt(highScore)
-        if (highScoreInt < this.state.arvausKerroin) {
-            this.setHighScore()
-        }
-    } catch(error){
-        Alert.alert('error')
-    }
-}
-   componentDidMount(){
+  componentDidMount(){
        this.resetGame()
-       this.seeHighScore()
-   }
+     }
     
     resetGame(){
-        this.setState({arvausKerroin: 1, vastaus: Math.floor(Math.random() * 100) + 1, arvaus: ''})
+        this.setState({arvaukset: 1, vastaus: Math.floor(Math.random() * 100) + 1, arvaus: ''})
     }
+    
+    clearData(){
+    AsyncStorage.clear();
+ }    
+    
+setHighScore(){
+    let highScore = this.state.arvaukset
+    let scoreString = highScore.toString() 
+    try {
+    AsyncStorage.setItem('highScore', scoreString);
+    } catch (error) {
+        Alert.alert('HighScoreFail')
+    }
+    this.setState({highScore: scoreString})
+    this.resetGame()
+}
+    
+    compareHighScore(){
+        let runScore = this.state.arvaukset
+        let currentHighScore = parseInt(this.state.highScore)
+        if (runScore < currentHighScore || currentHighScore == 0) {
+            this.setHighScore()
+        } else {
+            this.resetGame()
+        }
+    } 
+    
+    
+    addWin(){
+                let voitotNum = parseInt(this.state.voitotSync)
+                let voitotUpdatet = voitotNum + 1
+                let voitot = voitotUpdatet.toString()
+                 try {     
+                 AsyncStorage.setItem('voitotSync', voitot);
+                 } catch (error) {
+                     Alert.alert('WinningFail');
+                 }
+                    this.setState({voitotSync: voitot})
+                }
     
     buttonPressed = () => {
         if (parseInt(this.state.arvaus) == parseInt(this.state.vastaus)) {
-            Alert.alert('Arvasit oikein ' + this.state.arvausKerroin + ' yrityksellä');
-            this.setState((prevState) => {
-                return {voitot: prevState.voitot +1}});
-                    this.seeHighScore()
-                        this.resetGame()
+            Alert.alert('Arvasit oikein ' + this.state.arvaukset + ' yrityksellä');
+                        this.addWin()
+                            this.compareHighScore()
+                                
+                            
             
         } else if (parseInt(this.state.arvaus) > parseInt(this.state.vastaus) && parseInt(this.state.arvaus) < 101) {
             Alert.alert('Arvauksesi ' + this.state.arvaus + ' on liian suuri');
                 this.setState((prevState) => {
-                    return {arvausKerroin: prevState.arvausKerroin + 1}});
+                    return {arvaukset: prevState.arvaukset + 1}});
             
         } else if (parseInt(this.state.arvaus) < parseInt(this.state.vastaus) && parseInt(this.state.arvaus) > 0) {
             Alert.alert('Arvauksesi ' + this.state.arvaus + ' on liian pieni');
                 this.setState((prevState) => {
-                    return {arvausKerroin: prevState.arvausKerroin + 1}});
+                    return {arvaukset: prevState.arvaukset + 1}});
             
         } else {
             Alert.alert('Arvaa lukua 1-100 väliltä!');
@@ -82,18 +110,17 @@ seeHighScore = async () => {
         <Image style={{width:250, height: 300}}
         source={require('../PinguLokoEka.png')} />
         <Text>{this.state.text}</Text>
-        <Text> Arvaukset: {this.state.arvausKerroin -1} Voitot: {this.state.voitot} Ennätys: {this.state.highScore}</Text>
+        <Text> Arvaukset: {this.state.arvaukset -1} Voitot: {this.state.voitotSync} Ennätys: {this.state.highScore} Vastaus: {this.state.vastaus}</Text>
         <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}} keyboardType='numeric' onChangeText={(arvaus) => this.setState({arvaus})} value={this.state.arvaus} />
         <Button onPress={this.buttonPressed} title="Arvaa numeroa"/>
-             <Button onPress={() => this.props.navigation.navigate('GuessingHistory', {voitot: this.state.voitot})} title="Voitot"/>
-              
+             <Button onPress={() => this.props.navigation.navigate('GuessingHistory', {voitotSync: this.state.voitotSync, highScore: this.state.highScore})} title="Voitot"/>
+               <Button onPress={this.clearData} title="ClearScore"/>
       </View>
         
     );
   }
 }
 
- //  <Button onPress={this.clearData} title="ClearScore"/>
 
 const styles = StyleSheet.create({
   container: {
