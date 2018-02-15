@@ -29,6 +29,7 @@ export default class Laskinhistoria extends React.Component {
        </View>
        <View style={styles.inputs}>
         <TextInput keyboardType='numeric' onChangeText={(numero1) => this.setState({numero1})} value={this.state.numero1} />
+   </View><View style={styles.inputs}>
        <TextInput keyboardType='numeric' onChangeText={(numero2) => this.setState({numero2})} value={this.state.numero2} />
        </View>
        <View style={styles.buttons}>
@@ -46,16 +47,14 @@ export default class Laskinhistoria extends React.Component {
      
         container: {
             flex: 1,
-            backgroundColor: 'rgba(196, 214, 213, 0.74)',
-            paddingTop: 40
+            margin: 'auto'
         },
      
         inputs: {
-            width: 50,
-            height: 50,
-            borderColor: 'gray', 
+            width: 35,
+            height: 25,
+            borderColor: 'blue', 
             borderWidth: 1,
-            justifyContent: 'center',
             alignSelf: 'center'
             
     },
@@ -63,7 +62,6 @@ export default class Laskinhistoria extends React.Component {
         buttons: {
             flexDirection: 'row',
             padding: 10,
-            alignSelf: 'center',
             justifyContent: 'space-around'
         }
     })
