@@ -44,11 +44,11 @@ export default class Arvauspeli extends React.Component {
     AsyncStorage.clear();
  }    
     
-setHighScore(){
+async setHighScore(){
     let highScore = this.state.arvaukset
     let scoreString = highScore.toString() 
     try {
-    AsyncStorage.setItem('highScore', scoreString);
+   await AsyncStorage.setItem('highScore', scoreString);
     } catch (error) {
         Alert.alert('HighScoreFail')
     }
@@ -67,12 +67,12 @@ setHighScore(){
     } 
     
     
-    addWin(){
+    async addWin(){
                 let voitotNum = parseInt(this.state.voitotSync)
                 let voitotUpdatet = voitotNum + 1
                 let voitot = voitotUpdatet.toString()
                  try {     
-                 AsyncStorage.setItem('voitotSync', voitot);
+                await AsyncStorage.setItem('voitotSync', voitot);
                  } catch (error) {
                      Alert.alert('WinningFail');
                  }
