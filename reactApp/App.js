@@ -7,6 +7,8 @@ import Arvauspeli from './components/Arvauspeli';
 import LaskinHistory from './components/LaskinHistory';
 import GuessingHistory from './components/GuessingHistory';
 import Recipe from './components/Recipe';
+import RecipeDetails from './components/RecipeDetails';
+
 
 export default class App extends React.Component {
 
@@ -17,6 +19,11 @@ export default class App extends React.Component {
         );
   }
 }
+        
+const StackRecipe = StackNavigator({
+        Recipe: {screen: Recipe},
+        RecipeDetails: {screen: RecipeDetails}
+        })
         
 
 const StackLaskin = StackNavigator({
@@ -30,7 +37,7 @@ const StackArvaus = StackNavigator({
 })
 
 const TabNavigaattori = TabNavigator({
-    Recipe: {screen: Recipe},
+    Recipe: {screen: StackRecipe},
     Laskin: {screen: StackLaskin},
     GuessingGame: {screen: StackArvaus}
    

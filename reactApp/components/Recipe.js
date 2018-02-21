@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, TextInput, Alert, Button} from 'react-native';
+import { List, ListItem } from "react-native-elements";
 
 export default class Recipe extends React.Component {
    static navigationOptions = {title: 'Reseptihaku'};
@@ -20,6 +21,10 @@ export default class Recipe extends React.Component {
                   Alert.alert(error);
                 });
     }
+    
+    getDetails = (item) => {
+        this.props.navigation.navigate('RecipeDetails', {...item});
+    }
 
   render() {
     return (
@@ -33,12 +38,20 @@ export default class Recipe extends React.Component {
         <Button onPress={this.haeResepti} title="Hae reseptiä"/>
         </View>
         <View>
+        </View>
         <Text> Löydetyt reseptit: </Text>
-        <FlatList style={styles.recipes} keyExtractor={item => item.title}
-        renderItem={({item}) => <Text>{item.title}</Text>}
-        data={this.state.reseptit} />
+        <List>
+        <FlatList 
+        data={this.state.reseptit}
+        keyExtractor={item => item.title}
+        renderItem={({item}) => <ListItem roundAvatar
+        title={item.title}
+        subtitle={item.ingredients}
+        avatar={{ uri: item.thumbnail }}
+        onPress={() => this.getDetails(item)}/>}/>
+        </List>  
         </View>  
-      </View>
+      
     );
   }
 }
@@ -47,9 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-      paddingTop: 100,
+      paddingTop: 20,
       paddingBottom: 100
   },
     text: {
@@ -60,7 +71,9 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderColor: 'blue',
       borderWidth: 1,
-      width: 150
+      width: 150,
+        justifyContent: 'center',
+        alignSelf: 'center'
     },
     recipes: {
       marginRight: '5%'
