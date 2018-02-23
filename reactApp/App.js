@@ -8,7 +8,7 @@ import LaskinHistory from './components/LaskinHistory';
 import GuessingHistory from './components/GuessingHistory';
 import Recipe from './components/Recipe';
 import RecipeDetails from './components/RecipeDetails';
-
+import Fixer from './components/Fixer';
 
 export default class App extends React.Component {
 
@@ -37,6 +37,7 @@ const StackArvaus = StackNavigator({
 })
 
 const TabNavigaattori = TabNavigator({
+    Fixer: {screen: Fixer},
     Recipe: {screen: StackRecipe},
     Laskin: {screen: StackLaskin},
     GuessingGame: {screen: StackArvaus}
