@@ -29,6 +29,8 @@ export default class Recipe extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+         <Button onPress={() => this.props.navigation.navigate('DrawerOpen')}
+           title="Open Drawnavigator" />
         <Text style={styles.text}>
         Hae reseptiä raaka-aineella! </Text>
         <View style={styles.inputs}>

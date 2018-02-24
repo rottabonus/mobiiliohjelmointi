@@ -24,6 +24,8 @@ export default class Laskinhistoria extends React.Component {
   render() {
    return(
        <View>
+        <Button onPress={() => this.props.navigation.navigate('DrawerOpen')}
+           title="Open Drawnavigator" />
        <View>
        <Text style={{alignSelf: 'center'}}>Vastaus: {this.state.vastaus}</Text>
        </View>
