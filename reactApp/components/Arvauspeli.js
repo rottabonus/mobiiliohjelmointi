@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, Image, AsyncStorage } from 'react-native';
 
 export default class Arvauspeli extends React.Component {
-     static navigationOptions = {title: 'Arvauspeli'};
+     static navigationOptions = {title: 'Guessing Game'};
     constructor(props){
         super(props);
         this.state = {arvaus: '', text: 'Arvaa numeroa väliltä 1-100'};
@@ -107,10 +107,9 @@ async setHighScore(){
   render() {
     return (
       <View style={styles.container}>
-        <Image style={{width:250, height: 300}}
-        source={require('../PinguLokoEka.png')} />
+       
         <Text>{this.state.text}</Text>
-        <Text> Arvaukset: {this.state.arvaukset -1} Voitot: {this.state.voitotSync} Ennätys: {this.state.highScore} Vastaus: {this.state.vastaus}</Text>
+        <Text> Arvaukset: {this.state.arvaukset -1} Voitot: {this.state.voitotSync} Ennätys: {this.state.highScore} </Text>
         <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}} keyboardType='numeric' onChangeText={(arvaus) => this.setState({arvaus})} value={this.state.arvaus} />
         <Button onPress={this.buttonPressed} title="Arvaa numeroa"/>
              <Button onPress={() => this.props.navigation.navigate('GuessingHistory', {voitotSync: this.state.voitotSync, highScore: this.state.highScore})} title="Voitot"/>

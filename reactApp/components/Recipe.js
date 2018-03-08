@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, TextInput, Alert, Button} from 'react
 import { List, ListItem } from "react-native-elements";
 
 export default class Recipe extends React.Component {
-   static navigationOptions = {title: 'Reseptihaku'};
+   static navigationOptions = {title: 'Recipe Search'};
     constructor(props){
       super(props);
       this.state = {reseptit: [], aine: ''}

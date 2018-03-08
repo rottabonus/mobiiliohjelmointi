@@ -3,7 +3,7 @@ import { AppRegistry, Text, View, StyleSheet, TextInput, Button, FlatList } from
 
 
 export default class Laskinhistoria extends React.Component {
-    static navigationOptions = {title: 'Laskin'};
+    static navigationOptions = {title: 'Calculator'};
     constructor(props){
         super(props);
         this.state = {numero1: '', numero2: '', vastaus: '', historia: []};

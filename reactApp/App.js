@@ -9,6 +9,8 @@ import GuessingHistory from './components/GuessingHistory';
 import Recipe from './components/Recipe';
 import RecipeDetails from './components/RecipeDetails';
 import Fixer from './components/Fixer';
+import FindAddr from './components/FindAddr';
+import Shoppinglist from './components/Shoppinglist';
 
 
 export default class App extends React.Component{
@@ -37,17 +39,18 @@ export default class App extends React.Component{
 })
  
  const DrawerNavigation = DrawerNavigator({
-    Fixer: {screen: Fixer,
+    FindAddress: {screen: FindAddr},
+     Fixer: {screen: Fixer,
            path: '/converter'},
     Recipe: {screen: StackRecipe,
             path: '/recipes'},
     Laskin: {screen: StackLaskin,
             path: '/calculator'},
     GuessingGame: {screen: StackArvaus,
-                  path: '/guessing'}
+                  path: '/guessing'},
+     Shoppinglist: {screen: Shoppinglist}
 }, {
-    drawerPosition: 'left',
-    initialRouterName: 'Fixer'
+    drawerPosition: 'left'
 
 })
 
