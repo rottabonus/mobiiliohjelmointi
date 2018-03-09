@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { AppRegistry, Text, View, StyleSheet, TextInput, Button, FlatList } from 'react-native';
+import React from 'react';
+import { AppRegistry, Text, View, StyleSheet, TextInput, Button} from 'react-native';
 
 
 export default class Laskinhistoria extends React.Component {
@@ -47,10 +47,7 @@ export default class Laskinhistoria extends React.Component {
 
  const styles = StyleSheet.create({
      
-        container: {
-            flex: 1,
-            margin: 'auto'
-        },
+        
      
         inputs: {
             width: 35,

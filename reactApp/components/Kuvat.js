@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { AppRegistry, Text, View } from 'react-native';
 
 export default class Kuvat extends React.Component {

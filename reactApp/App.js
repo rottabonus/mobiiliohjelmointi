@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
-import { StackNavigator, DrawerNavigator, TabNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator} from 'react-navigation';
 
 import Laskin from './components/Laskin';
 import Arvauspeli from './components/Arvauspeli';

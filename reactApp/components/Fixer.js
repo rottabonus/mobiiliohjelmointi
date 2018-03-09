@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, Picker, FlatList, ActivityIndicator} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, Picker, ActivityIndicator} from 'react-native';
 
 export default class Fixer extends React.Component {
    static navigationOptions = {title: 'Euro Converter'};

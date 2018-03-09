@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, TextInput, View, Alert, Button} from 'react-native';
 import {MapView} from 'expo';
-import {Card} from 'react-native-card-view';
+
 
 export default class RecipeDetails extends React.Component {
       static navigationOptions = {title: 'Find Address'};
     constructor(props){
         super(props);
-        this.state = {address: 'Type address', marker: ''};
+        this.state = {address: 'Type address', markerLat: 0, markerLong: 0};
     }
 
     getAddress = () => {
@@ -17,8 +17,9 @@ export default class RecipeDetails extends React.Component {
         .then((response) => response.json())
         .then((responseJson) => {
             this.setState({
-               marker: responseJson.formatted_address});
-            Alert.alert(JSON.stringify(responseJson.formatted_address));
+             markerLat: responseJson.results[0].geometry.location.lat,
+             markerLong: responseJson.results[0].geometry.location.lng
+            });
         }) .catch((error) => {
                   Alert.alert(error);
                 });  
@@ -39,7 +40,13 @@ export default class RecipeDetails extends React.Component {
         longitude: 24.934302,
         latitudeDelta: 0.0322,
         longitudeDelta: 0.0221,
-        }} />
+        }} >
+        <MapView.Marker
+        coordinate={{
+          latitude: this.state.markerLat,
+          longitude: this.state.markerLong}}
+          title='Yo'/>
+      </MapView>
        
         <Button onPress={() => this.props.navigation.navigate('DrawerOpen')}
           title="Open Drawnavigator" />
@@ -56,9 +63,7 @@ const styles = StyleSheet.create({
       paddingTop: 20,
       paddingBottom: 20
   },
-    text: {
-        textAlign: 'center'
-    },
+    
     input: {
       borderColor: 'blue',
       borderWidth: 1,
