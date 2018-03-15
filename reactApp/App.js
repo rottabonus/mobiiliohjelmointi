@@ -12,7 +12,6 @@ import FindAddr from './components/FindAddr';
 import Shoppinglist from './components/Shoppinglist';
 import FindRestaurants from './components/FindRestaurants';
 
-
 export default class App extends React.Component{
     render() {
         return (
@@ -39,6 +38,8 @@ export default class App extends React.Component{
 })
  
  const DrawerNavigation = DrawerNavigator({
+     
+     Shoppinglist: {screen: Shoppinglist},
     FindAddress: {screen: FindAddr},
      FindRestaurants: {screen: FindRestaurants},
      Fixer: {screen: Fixer,
@@ -48,8 +49,8 @@ export default class App extends React.Component{
     Laskin: {screen: StackLaskin,
             path: '/calculator'},
     GuessingGame: {screen: StackArvaus,
-                  path: '/guessing'},
-     Shoppinglist: {screen: Shoppinglist}
+                  path: '/guessing'}
+     
 }, {
     drawerPosition: 'left'
 
