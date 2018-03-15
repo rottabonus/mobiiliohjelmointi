@@ -39,8 +39,8 @@ export default class App extends React.Component{
 })
  
  const DrawerNavigation = DrawerNavigator({
-     FindRestaurants: {screen: FindRestaurants},
     FindAddress: {screen: FindAddr},
+     FindRestaurants: {screen: FindRestaurants},
      Fixer: {screen: Fixer,
            path: '/converter'},
     Recipe: {screen: StackRecipe,

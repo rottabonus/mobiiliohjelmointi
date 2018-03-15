@@ -1,14 +1,30 @@
 import React from 'react';
-import { StyleSheet, TextInput, View, Alert, Button} from 'react-native';
-import {MapView} from 'expo';
+import { StyleSheet, TextInput, View, Alert, Button, Text} from 'react-native';
+import {MapView, Location, Permissions, Marker} from 'expo';
 
 
-export default class RecipeDetails extends React.Component {
+export default class FindAddr extends React.Component {
       static navigationOptions = {title: 'Find Address'};
     constructor(props){
         super(props);
-        this.state = {address: 'Type address', markerLat: 0, markerLong: 0};
+        this.state = {address: 'Type address', locationRs: null, markerLat: 0, markerLon: 0};
     }
+    
+    componentDidMount(){
+        this.getLocation();
+    }
+    
+    getLocation = async () => {
+        let {status} = await Permissions.askAsync(Permissions.LOCATION);
+        if (status !== 'granted') {
+            Alert.alert('No permission!')
+        } else {
+            let location = await Location.getCurrentPositionAsync({});
+            this.setState({locationRs: JSON.stringify(location),
+                          markerLat: location.coords.latitude,
+                          markerLon: location.coords.longitude});
+        }
+    };
 
     getAddress = () => {
         let address = this.state.address
@@ -18,7 +34,7 @@ export default class RecipeDetails extends React.Component {
         .then((responseJson) => {
             this.setState({
              markerLat: responseJson.results[0].geometry.location.lat,
-             markerLong: responseJson.results[0].geometry.location.lng
+             markerLon: responseJson.results[0].geometry.location.lng
             });
         }) .catch((error) => {
                   Alert.alert(error);
@@ -42,12 +58,11 @@ export default class RecipeDetails extends React.Component {
         longitudeDelta: 0.0221,
         }} >
         <MapView.Marker
-        coordinate={{
-          latitude: this.state.markerLat,
-          longitude: this.state.markerLong}}
-          title='Yo'/>
+        coordinate={{latitude: this.state.markerLat,
+                    longitude: this.state.markerLon}}
+                    />
       </MapView>
-       
+       <Text>{this.state.locationRs}</Text>
         <Button onPress={() => this.props.navigation.navigate('DrawerOpen')}
           title="Open Drawnavigator" />
        
@@ -72,9 +87,3 @@ const styles = StyleSheet.create({
     }
     
     });
-
-//  width: Dimensions.get('window').width,
-//        height: Dimensions.get('window').height
-
-// <View><Button onPress={() => this.props.navigation.navigate('DrawerOpen')}
-//           title="Open Drawnavigator" /></View>
