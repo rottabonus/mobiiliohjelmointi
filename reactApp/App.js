@@ -12,6 +12,7 @@ import FindAddr from './components/FindAddr';
 import Shoppinglist from './components/Shoppinglist';
 import FindRestaurants from './components/FindRestaurants';
 
+
 export default class App extends React.Component{
     render() {
         return (
@@ -39,9 +40,10 @@ export default class App extends React.Component{
  
  const DrawerNavigation = DrawerNavigator({
      
+
      Shoppinglist: {screen: Shoppinglist},
-    FindAddress: {screen: FindAddr},
      FindRestaurants: {screen: FindRestaurants},
+    FindAddress: {screen: FindAddr},
      Fixer: {screen: Fixer,
            path: '/converter'},
     Recipe: {screen: StackRecipe,

@@ -2,18 +2,18 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button, FlatList } from 'react-native';
 import  { SQLite } from 'expo';
 
-const db = SQLite.openDatabase('shoppinglist.db');
+const db = SQLite.openDatabase('shopping.db');
 
-export default class Shoppinglist extends React.Component {
+export default class ShoppinglistTest extends React.Component {
     constructor(props){
         super(props);
-        this.state = {product: '', data: []};
+        this.state = {product: '', amount: '', data: []};
     }
     
     
     componentDidMount() {
     db.transaction(tx => {
-      tx.executeSql('create table if not exists shoppinglist (id integer primary key not null, product text);');
+      tx.executeSql('create table if not exists shopping (id integer primary key not null, product text, amount text);');
     });
     this.updateList();
   }
@@ -21,13 +21,13 @@ export default class Shoppinglist extends React.Component {
     
     addProduct = () => {
         db.transaction(tx => {
-            tx.executeSql('insert into shoppinglist (product) values (?)', [this.state.product]);
+            tx.executeSql('insert into shopping (product, amount) values (?, ?)', [this.state.product, this.state.amount]);
         }, null, this.updateList)
     }
     
     updateList = () => {
         db.transaction(tx => {
-            tx.executeSql('select * from shoppinglist', [], (_, { rows }) =>
+            tx.executeSql('select * from shopping', [], (_, { rows }) =>
                          this.setState({data: rows._array})
                          );
         });
@@ -35,7 +35,7 @@ export default class Shoppinglist extends React.Component {
     
     deleteProduct = (id) => {
         db.transaction(
-        tx => { tx.executeSql('delete from shoppinglist where id = ?;', [id]);}, null,
+        tx => { tx.executeSql('delete from shopping where id = ?;', [id]);}, null,
         this.updateList)
     }
 
@@ -44,7 +44,9 @@ export default class Shoppinglist extends React.Component {
     return (
       <View style={styles.container}>
         
-        <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}} onChangeText={(product) => this.setState({product})} value={this.state.product} />
+        <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}} placeholder='Product' onChangeText={(product) => this.setState({product})} value={this.state.product} />
+        <TextInput style={{width: 200, borderColor: 'gray', borderWidth: 1}} placeholder='Amount' onChangeText={(amount) => this.setState({amount})} value={this.state.amount} />
+
         <View style={styles.buttons}>
         <Button onPress={this.addProduct} title="Add"/>
             </View>
@@ -54,7 +56,7 @@ export default class Shoppinglist extends React.Component {
         data={this.state.data}
         keyExtractor={item => item.id}
         renderItem={({item}) => <View style={styles.listcontainer}>
-        <Text>{item.product}</Text>
+        <Text>{item.product}, {item.amount}</Text>
             <Text style={{color: 'red'}} onPress={() => this.deleteProduct(item.id)}> remove</Text></View>}
          />
       </View>
