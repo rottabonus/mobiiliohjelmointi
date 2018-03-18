@@ -16,7 +16,7 @@ export default class Fixer extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      sum: 0,
+      sum: '',
       currency: 0,
       data: null,
       converted: 0,
@@ -62,7 +62,7 @@ export default class Fixer extends React.Component {
       <View style={styles.container}>
         <View style={styles.buttons}>
           <Text style={styles.text}>
-            Input amount of euros to convert:{' '}
+            Input amount of euros to convert:
           </Text>
           <TextInput
             keyboardType="numeric"

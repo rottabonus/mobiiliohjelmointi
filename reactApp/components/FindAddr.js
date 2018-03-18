@@ -7,7 +7,7 @@ export default class FindAddr extends React.Component {
       static navigationOptions = {title: 'Find Address'};
     constructor(props){
         super(props);
-        this.state = {address: 'Type address', locationRs: null, markerLat: 0, markerLon: 0};
+        this.state = {address: '', locationRs: null, markerLat: 0, markerLon: 0};
     }
     
     componentDidMount(){
@@ -45,7 +45,7 @@ export default class FindAddr extends React.Component {
     return (
         <View style={styles.container}>
         
-         <TextInput style={styles.input} onChangeText={(address) => this.setState({address})} value={this.state.address} />
+         <TextInput style={styles.input} placeholder='Type Address' onChangeText={(address) => this.setState({address})} value={this.state.address} />
         <Button onPress={this.getAddress} title="Show" />
         
         

@@ -11,6 +11,8 @@ import Fixer from './components/Fixer';
 import FindAddr from './components/FindAddr';
 import Shoppinglist from './components/Shoppinglist';
 import FindRestaurants from './components/FindRestaurants';
+import Myplaces from './components/Myplaces';
+import MyplacesMap from './components/MyplacesMap';
 
 
 export default class App extends React.Component{
@@ -38,16 +40,21 @@ export default class App extends React.Component{
         GuessingHistory: {screen: GuessingHistory}
 })
  
+const StackMyPlaces = StackNavigator({
+        Myplaces: {screen: Myplaces},
+        MyplacesMap: {screen: MyplacesMap}
+})
+ 
  const DrawerNavigation = DrawerNavigator({
      
-
-     Shoppinglist: {screen: Shoppinglist},
+     Myplaces: {screen: Myplaces},
+      Shoppinglist: {screen: Shoppinglist},
+      Recipe: {screen: StackRecipe,
+            path: '/recipes'},
      FindRestaurants: {screen: FindRestaurants},
     FindAddress: {screen: FindAddr},
      Fixer: {screen: Fixer,
            path: '/converter'},
-    Recipe: {screen: StackRecipe,
-            path: '/recipes'},
     Laskin: {screen: StackLaskin,
             path: '/calculator'},
     GuessingGame: {screen: StackArvaus,
