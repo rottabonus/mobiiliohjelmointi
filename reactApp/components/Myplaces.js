@@ -70,7 +70,6 @@ deleteAdd = (id) => {
         keyExtractor={item => item.id}
         renderItem={({item}) => <ListItem
         title={item.address}
-        subtitle={item.id}
         rightTitle='show on map'
         rightIcon={{name:'room'}}
         onLongPress={() => this.deleteAdd(item.id)}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { AppRegistry, Text, View, StyleSheet, TextInput, Button} from 'react-native';
+import { Header } from 'react-native-elements';
 
 
 export default class Laskinhistoria extends React.Component {
-    static navigationOptions = {title: 'Calculator'};
+    static navigationOptions = {title: 'Calculator',  header: null };
     constructor(props){
         super(props);
         this.state = {numero1: '', numero2: '', vastaus: '', historia: []};
@@ -24,8 +25,18 @@ export default class Laskinhistoria extends React.Component {
   render() {
    return(
        <View>
-        <Button onPress={() => this.props.navigation.navigate('DrawerOpen')}
-           title="Open Drawnavigator" />
+        
+       <Header
+  placement="left"
+  leftComponent={{ icon: 'menu',
+        color: '#fff',
+        onPress: () => this.props.navigation.navigate('DrawerOpen')}}
+  centerComponent={{ text: 'Calculator', style: { color: '#fff' } }}
+  rightComponent={{ icon: 'home',
+                  color: '#fff',
+                 onPress: () => this.props.navigation.navigate('Shoppinglist')}}
+/>
+       
        <View>
        <Text style={{alignSelf: 'center'}}>Vastaus: {this.state.vastaus}</Text>
        </View>

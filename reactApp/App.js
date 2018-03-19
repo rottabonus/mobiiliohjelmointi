@@ -47,7 +47,7 @@ const StackMyPlaces = StackNavigator({
  
  const DrawerNavigation = DrawerNavigator({
      
-     Myplaces: {screen: Myplaces},
+     Myplaces: {screen: StackMyPlaces},
       Shoppinglist: {screen: Shoppinglist},
       Recipe: {screen: StackRecipe,
             path: '/recipes'},
