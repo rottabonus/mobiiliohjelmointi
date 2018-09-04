@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import TodoTable from './TodoTable.js';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {description: '', date: '', todos: []}
@@ -22,11 +22,12 @@ class App extends Component {
   
    
    
-   removeTodo(index){
-        console.log({index});
+   removeTodo = (index) => {
+        console.log(index);
+	const updatedTodos = this.state.todos.filter((todo, i) => i !== index)
+	console.log(updatedTodos)
       this.setState({
-      todos: [this.state.todos.filter((todo, i) => i !== index)]
-          
+      todos: updatedTodos       
       }); 
    }
   
