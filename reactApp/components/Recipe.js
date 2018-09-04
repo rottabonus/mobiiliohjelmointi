@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TextInput, Alert, Button} from 'react-native';
-import { List, ListItem } from "react-native-elements";
+import { StyleSheet, Text, View, FlatList, Alert, TextInput} from 'react-native';
+import { List, ListItem, Button, Header } from 'react-native-elements';
 
 export default class Recipe extends React.Component {
-   static navigationOptions = {title: 'Recipe Search'};
+   static navigationOptions = { header: null }
     constructor(props){
       super(props);
       this.state = {reseptit: [], aine: ''}
@@ -15,7 +15,8 @@ export default class Recipe extends React.Component {
                 .then((response) => response.json())
                 .then((responseJson) =>  {
                 this.setState({
-                  reseptit: responseJson.results});
+                  reseptit: responseJson.results,
+                aine: ''});
                 })
                 .catch((error) => {
                   Alert.alert(error);
@@ -25,25 +26,39 @@ export default class Recipe extends React.Component {
     getDetails = (item) => {
         this.props.navigation.navigate('RecipeDetails', {...item});
     }
+    
+    renderHeader = () => {
+        return <Text style={{fontSize: 20}}> Found Recipes </Text>;
+    };
 
   render() {
     return (
+        
       <View style={styles.container}>
-         <Button onPress={() => this.props.navigation.navigate('DrawerOpen')}
-           title="Open Drawnavigator" />
-        <Text style={styles.text}>
-        Hae reseptiä raaka-aineella! </Text>
-        <View style={styles.inputs}>
-        <TextInput value={this.state.aine} onChangeText={(aine) => this.setState({aine})} />
+        
+        <Header
+  placement="left"
+  leftComponent={{ icon: 'menu',
+        color: '#fff',
+        onPress: () => this.props.navigation.navigate('DrawerOpen')}}
+  centerComponent={{ text: 'Recipefinder', style: { color: '#fff' } }}
+  rightComponent={{ icon: 'home',
+                  color: '#fff',
+                 onPress: () => this.props.navigation.navigate('Shoppinglist')}}
+/>
+        
+        <View>
+        <TextInput style={styles.inputs} value={this.state.aine} placeholder='Ingredient' onChangeText={(aine) => this.setState({aine})} />
         </View>
         <View>
-        <Button onPress={this.haeResepti} title="Hae reseptiä"/>
+        <Button onPress={this.haeResepti} title="Find recipe by ingredient"/>
         </View>
         <View>
         </View>
-        <Text> Löydetyt reseptit: </Text>
+
         <List>
         <FlatList 
+        ListHeaderComponent={this.renderHeader}
         data={this.state.reseptit}
         keyExtractor={item => item.title}
         renderItem={({item}) => <ListItem roundAvatar
@@ -70,12 +85,9 @@ const styles = StyleSheet.create({
     },
     inputs: {
       flexDirection: 'row',
-      alignItems: 'center',
-      borderColor: 'blue',
+      borderColor: 'gray',
       borderWidth: 1,
-      width: 150,
-        justifyContent: 'center',
-        alignSelf: 'center'
+      padding: 5
     },
     recipes: {
       marginRight: '5%'
