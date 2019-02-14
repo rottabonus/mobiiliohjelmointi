@@ -19,17 +19,14 @@
           this.state = {weather: '', temp: '', weathericon:''};
         }
        
-          componentDidMount() {
-              fetch('https://api.openweathermap.org/data/2.5/weather?q=Helsinki&units=metric&APPID=6ab1df036abc6e5ee1324319a3497b56')
-                  .then((response) => response.json())
-                  .then((responseData) => {
-                  console.log(responseData);
+          async componentDidMount() {
+              const result = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Helsinki&units=metric&APPID=6ab1df036abc6e5ee1324319a3497b56')
+                  const goodStuff = await result.json();
                   this.setState({
-                      weather: responseData.weather[0].main,
-                      temp: responseData.main.temp,
-                      url: responseData.weather[0].icon      
-                  });
-              });
+                      weather: goodStuff.weather[0].main,
+                      temp: goodStuff.main.temp,
+                      url: goodStuff.weather[0].icon      
+                  })
           }
         
         render() { 
