@@ -20,6 +20,7 @@ class Frontpage extends Component {
     return (
       <Router>
       <div>
+
       <div>
       <ul>
       <li><Link to="/customers">Customers</Link></li>
@@ -31,6 +32,7 @@ class Frontpage extends Component {
         <Route path="/customers" render={() => <Table headers={this.state.customerHeaders} data={this.state.customers}/>}/>
         <Route path="/trainings" render={() => <Table headers={this.state.trainingHeaders} data={this.state.trainings}/>}/>
       </div>
+      
       </div>
       </Router>
     );
