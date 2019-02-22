@@ -1,25 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Table from '../components/Table'
-import customerService from '../services/customers'
-import trainingService from '../services/trainings'
+import React from 'react';
+import CustomerTable from '../components/CustomerTable'
+import TrainingTable from '../components/TrainingTable'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+
 const Hookpage = () => {
-  const [customers, setCustomers] = useState([])
-  const [trainings, setTrainings] = useState([])
-  const [customerHeaders, setCustomerHeaders] = useState(['Firstname', 'Lastname', 'Email'])
-  const [trainingHeaders, setTrainingHeaders] = useState(['Date', 'Duration', 'Activity'])
-
-  const fetchData = async () => {
-    const customers = await customerService.fetchAll()
-    const trainings = await trainingService.fetchAll()
-    setCustomers(customers)
-    setTrainings(trainings)
-  }
-
-   useEffect(() => {
-    fetchData()
-  }, [])
 
   return (
   <Router>
@@ -31,12 +16,12 @@ const Hookpage = () => {
         </ul>
       </div>
     <div>
-      <Route path="/customers" render={() => <Table headers={customerHeaders} data={customers}/>}/>
-      <Route path="/trainings" render={() => <Table headers={trainingHeaders} data={trainings}/>}/>
+      <Route path="/customers" render={() => <CustomerTable/>}/>
+      <Route path="/trainings" render={() => <TrainingTable/>}/>
     </div>
     </div>
   </Router>
-  );
+  )
 }
 
 export default Hookpage
