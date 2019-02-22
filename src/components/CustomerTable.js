@@ -5,7 +5,7 @@ import customerService from '../services/customers'
 const CustomerTable = () => {
 
   const [customers, setCustomers] = useState([])
-  const [customerHeaders] = useState(['Firstname', 'Lastname', 'Email'])
+  const customerHeaders = ['Firstname', 'Lastname', 'Address', 'PostalCode', 'City', 'Email', 'Phonenumber']
 
   const fetchData = async () => {
     const customers = await customerService.fetchAll()
