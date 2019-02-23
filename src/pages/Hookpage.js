@@ -3,7 +3,6 @@ import CustomerTable from '../components/CustomerTable'
 import TrainingTable from '../components/TrainingTable'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-
 const Hookpage = () => {
 
   return (
