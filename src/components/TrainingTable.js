@@ -7,7 +7,8 @@ const TrainingTable = () => {
   const [trainings, setTrainings] = useState([])
   const [filterString, setFilterString] = useState('i.e. "zumba"')
   const [trainingHeaders, setTrainingheaders] = useState([])
-  const trainingsToShow = trainings.filter(a => a.activity.toLowerCase().includes(filterString.toLowerCase()))
+  const [filterKey, setFilterkey] = useState(['activity'])
+  const trainingsToShow = trainings.filter(a => a[filterKey].toString().toLowerCase().includes(filterString.toLowerCase()))
 
   const fetchData = async () => {
     const trainings = await trainingService.fetchAll()
@@ -28,6 +29,7 @@ const TrainingTable = () => {
   }, [])
 
   const sortByKey = (key) => {
+    setFilterkey(key)
     if(typeof trainings[0][key] === 'string'){
       setTrainings([...trainings].sort((a, b) => a[key].localeCompare(b[key])))
     } else {
@@ -38,12 +40,12 @@ const TrainingTable = () => {
 
   return (
   <div>
+  <p> Filter by <b>{filterKey}</b> </p>
+  <input label="filter" value={filterString} onChange={handleFilterChange}/>
   <table>
   <thead><tr>{trainingHeaders.map((header, i) => <th key={i} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}</tr></thead>
   <List data={trainingsToShow} />
   </table>
-  <p> Filter activities </p>
-  <input label="filter" value={filterString} onChange={handleFilterChange}/>
   </div>
   )
 }
