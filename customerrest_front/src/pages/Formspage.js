@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import TrainingForm from '../components/TrainingForm'
 import CustomerForm from '../components/CustomerForm'
 
 const Formspage = () => {
@@ -17,7 +16,7 @@ const Formspage = () => {
     </div>
 
     <div>
-      <Route path="/trainingform" render={() => <TrainingForm/>}/>
+      <Route path="/trainingform" render={() => null }/>
       <Route path="/customerform" render={() => <CustomerForm/>}/>
     </div>
 
