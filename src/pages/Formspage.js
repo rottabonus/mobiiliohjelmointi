@@ -7,20 +7,14 @@ const Formspage = () => {
   return (
   <Router>
     <div>
-
-    <div>
-    <ul>
-    <li><Link to="/trainingform">newTraining</Link></li>
-    <li><Link to="/customerform">newCustomer</Link></li>
-    </ul>
+      <div>
+        <ul>
+          <li><Link to="/customerform">newCustomer</Link></li>
+        </ul>
     </div>
-
     <div>
-      <Route path="/trainingform" render={() => null }/>
       <Route path="/customerform" render={() => <CustomerForm/>}/>
     </div>
-
-
     </div>
   </Router>
   )

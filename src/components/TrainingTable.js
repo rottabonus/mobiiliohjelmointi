@@ -5,7 +5,7 @@ import trainingService from '../services/trainings'
 const TrainingTable = () => {
 
   const [trainings, setTrainings] = useState([])
-  const [filterString, setFilterString] = useState('i.e. "zumba"')
+  const [filterString, setFilterString] = useState('')
   const [trainingHeaders, setTrainingheaders] = useState([])
   const [filterKey, setFilterkey] = useState(['activity'])
   const trainingsToShow = trainings.filter(a => a[filterKey].toString().toLowerCase().includes(filterString.toLowerCase()))
@@ -38,13 +38,20 @@ const TrainingTable = () => {
   }
 
 
+    const deleteTraining = async (item) => {
+      const id = item.links[0].href.match(/\d+/)
+      await trainingService.deleteTraining(id)
+      fetchData()
+    }
+
+
   return (
   <div>
   <p> Filter by <b>{filterKey}</b> </p>
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
   <table>
   <thead><tr>{trainingHeaders.map((header, i) => <th key={i} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}</tr></thead>
-  <List data={trainingsToShow} />
+  <List data={trainingsToShow} deleteTraining={deleteTraining} />
   </table>
   </div>
   )

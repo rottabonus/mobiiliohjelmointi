@@ -1,11 +1,11 @@
 import React from 'react'
 import Item from './Item'
 
-const List = ({ data }) => {
+const List = ({ data, deleteCustomer, deleteTraining }) => {
   return (
     <tbody>
     {data.map((item, i) =>
-      <Item key={i} item={item} />
+      <Item key={i} deleteCustomer={deleteCustomer} deleteTraining={deleteTraining} item={item}/>
     )}
     </tbody>
   )
