@@ -15,11 +15,10 @@ const TodoTable = ({ todos, removeTodo }) => {
                 <tr key={index}>
                 <td>{todo.description}</td>
                 <td>{todo.date}</td>
-                <td><button onClick={(event) => removeTodo(index)} key={todo}>Delete</button></td></tr>
-)}
-</tbody>
-</table>
-</div>
+                <td><button onClick={(event) => removeTodo(index)} key={todo}>Delete</button></td></tr>)}
+                </tbody>
+                </table>
+                </div>
 );
 }
 export default TodoTable;
