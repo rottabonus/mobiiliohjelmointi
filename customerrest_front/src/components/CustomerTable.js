@@ -5,7 +5,7 @@ import customerService from '../services/customers'
 const CustomerTable = () => {
 
 const [customers, setCustomers] = useState([])
-const [filterString, setFilterString] = useState('i.e. "felix"')
+const [filterString, setFilterString] = useState('')
 const [customerHeaders, setCustomerheaders] = useState([])
 const [filterKey, setFilterkey] = useState(['firstname'])
 const customersToShow = customers.filter(a => a[filterKey].toLowerCase().includes(filterString.toLowerCase()))
@@ -33,10 +33,15 @@ const customersToShow = customers.filter(a => a[filterKey].toLowerCase().include
     }
   }
 
+  const deleteCustomer = async (item) => {
+    const id = item.links[0].href.match(/\d+/)
+    await customerService.deleteCustomer(id)
+    fetchData()
+  }
+
   const handleFilterChange = (e) => {
     setFilterString(e.target.value)
   }
-
 
   return (
   <div>
@@ -44,8 +49,9 @@ const customersToShow = customers.filter(a => a[filterKey].toLowerCase().include
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
     <table>
       <thead><tr>{customerHeaders.map((header, i) => <th key={i} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}</tr></thead>
-        <List data={customersToShow} />
+        <List data={customersToShow} deleteCustomer={deleteCustomer}/>
     </table>
+
   </div>
   )
 }

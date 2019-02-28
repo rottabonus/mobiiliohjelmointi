@@ -13,4 +13,14 @@ const create = async (object) => {
     body: JSON.stringify(object) })
   return response.json()
 }
-export default { fetchAll, create }
+
+const deleteCustomer = async (id) => {
+  let response = await fetch(`http://customerrest.herokuapp.com/api/customers/${id}`,
+  { method: "DELETE",
+    mode: "cors",
+    headers: {"Content-Type": "application/json"}
+  })
+  return response
+}
+
+export default { fetchAll, create, deleteCustomer }

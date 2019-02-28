@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Item = ({ item }) => {
+const Item = ({ item, deleteCustomer, deleteTraining }) => {
 
   const keys = Object.keys(item)
   const values = Object.values(item)
@@ -10,6 +11,8 @@ const Item = ({ item }) => {
     return (
       <tr>
     {filteredKey.map((itemkey, i) => <td key={i}>{item[itemkey]}</td>)}
+    {item.firstname ? <td><Link to={`/addtraining/${item.links[0].href.match(/\d+/)}`}><button>addtraining</button></Link></td> : null }
+    {item.firstname ? <td><button onClick={() => deleteCustomer(item)}>deleteCustomer</button></td> : <td><button onClick={() => deleteTraining(item)}>deleteTraining</button></td> }
     </tr>
     )
 }
