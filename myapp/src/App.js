@@ -19,21 +19,15 @@ class App extends React.Component {
       todos: [...this.state.todos,{description: this.state.description, date: this.state.date}]
     });
   }
-  
-   
-   
+
    removeTodo = (index) => {
-        console.log(index);
 	const updatedTodos = this.state.todos.filter((todo, i) => i !== index)
-	console.log(updatedTodos)
-      this.setState({
-      todos: updatedTodos       
-      }); 
+      this.setState({ todos: updatedTodos });
    }
-  
 
   render() {
     return (
+
       <div className="App">
         <div className="App-header">
           <h2>Simple Todolist</h2>
@@ -41,14 +35,12 @@ class App extends React.Component {
         <div>
           <form onSubmit={this.addTodo}>
         Description:
-            <input type="text" name="description" onChange={this.inputChanged} value={this.state.description}/> 
-        Date:  
-        <input type="text" name="date" onChange={this.inputChanged} value={this.state.date}/>
+            <input type="text" name="description" onChange={this.inputChanged} value={this.state.description} required/>
+        Date:
+        <input type="date" name="date" onChange={this.inputChanged} value={this.state.date} required/>
             <input type="submit" value="Add"/>
           </form>
         </div>
-        
-        
         <TodoTable todos={this.state.todos} removeTodo={this.removeTodo} />
 </div>
 
@@ -58,4 +50,3 @@ class App extends React.Component {
 }
 
 export default App;
-

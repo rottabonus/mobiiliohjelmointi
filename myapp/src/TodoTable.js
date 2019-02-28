@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
-  
+
 
 const TodoTable = ({ todos, removeTodo }) => {
+
+        const sortedList = [...todos].sort((a, b) => a.date.localeCompare(b.date))
+
         return(
         <div className="TodoTable">
         <table>
         <tbody>
         <tr><th>Description</th><th>Date</th></tr>
-            {todos.map((todo, index) =>
+            {sortedList.map((todo, index) =>
                 <tr key={index}>
                 <td>{todo.description}</td>
                 <td>{todo.date}</td>
