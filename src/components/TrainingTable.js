@@ -46,7 +46,7 @@ const TrainingTable = () => {
 
 
   return (
-  <div>
+  <div className="container">
   <p> Filter by <b>{filterKey}</b> </p>
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
   <table>
