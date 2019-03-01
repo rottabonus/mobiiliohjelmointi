@@ -27,23 +27,23 @@ const CustomerForm = () => {
   }
 
     return (
-      <div>
+      <div className="container">
       <form onSubmit={handleFormSubmit}>
       <p> enter info </p>
       <label htmlFor="firstname">firstname</label>
-      <input id="firstname" placeholder="firstname" type="text" {...firstname} required /><br />
+      <input id="firstname" placeholder="firstname" type="text" {...firstname} required />
       <label htmlFor="lastname">lastname</label>
-      <input id="lastname" placeholder="lastname" type="text" {...lastname} required /><br />
+      <input id="lastname" placeholder="lastname" type="text" {...lastname} required />
       <label htmlFor="streetaddress">streetaddress</label>
-      <input id="streetaddress" placeholder="streetaddress" type="text" {...streetaddress} required/><br />
+      <input id="streetaddress" placeholder="streetaddress" type="text" {...streetaddress} required/>
       <label htmlFor="postcode">postcode</label>
-      <input id="postcode" placeholder="postcode" type="text" {...postcode} required /><br />
+      <input id="postcode" placeholder="postcode" type="text" {...postcode} required />
       <label htmlFor="city">city</label>
       <input id="city" placeholder="city" type="text" {...city} required /><br />
       <label htmlFor="email">email</label>
-      <input id="email" placeholder="email@email.com" type="email" {...email} required/><br />
+      <input id="email" placeholder="email@email.com" type="email" {...email} required/>
       <label htmlFor="phone">phone</label>
-      <input id="phone" placeholder="phone" type="text" {...phone} required /><br />
+      <input id="phone" placeholder="phone" type="text" {...phone} required />
       <input value="create" type="submit" />
       </form>
       </div>

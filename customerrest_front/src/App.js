@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Hookpage from './pages/Hookpage'
 import Formspage from './pages/Formspage'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './index.css'
 
 class App extends Component {
 
