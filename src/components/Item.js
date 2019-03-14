@@ -5,7 +5,7 @@ const Item = ({ item, deleteCustomer, deleteTraining }) => {
 
   const keys = Object.keys(item)
   const values = Object.values(item)
-  const filteredVals = values.filter(val => typeof val === 'string')
+  const filteredVals = values.filter(val => typeof val === 'string' || typeof val === 'number')
   const filteredKey = keys.filter((key, i ) => i < filteredVals.length)
 
     return (

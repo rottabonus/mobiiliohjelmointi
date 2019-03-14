@@ -2,6 +2,7 @@
 const fetchAll = async () => {
   let response = await fetch('http://customerrest.herokuapp.com/api/trainings');
   let data = await response.json()
+  console.log(response.status)
   return data.content
 }
 
@@ -11,6 +12,7 @@ const create = async (object) => {
     mode: "cors",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(object) })
+    console.log(response.status)
   return response.json()
 }
 
@@ -20,7 +22,8 @@ const deleteTraining = async (id) => {
     mode: "cors",
     headers: {"Content-Type": "application/json"}
   })
-  return response
+  console.log(response.status)
+  return response.status
 }
 
 export default { fetchAll, create, deleteTraining }
