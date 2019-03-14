@@ -50,7 +50,7 @@ const TrainingTable = () => {
   <p> Filter by <b>{filterKey}</b> </p>
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
   <table>
-  <thead><tr>{trainingHeaders.map((header, i) => <th key={i} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}</tr></thead>
+  <thead><tr>{trainingHeaders.map((header, i) => <th key={i} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}<th>delete</th></tr></thead>
   <List data={trainingsToShow} deleteTraining={deleteTraining} />
   </table>
   </div>

@@ -2,6 +2,7 @@
 const fetchAll = async () => {
   let response = await fetch('http://customerrest.herokuapp.com/api/customers');
   let data = await response.json()
+  console.log(response.status)
   return data.content
 }
 
@@ -11,6 +12,7 @@ const create = async (object) => {
     mode: "cors",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(object) })
+    console.log(response.status)
   return response.json()
 }
 
@@ -20,6 +22,7 @@ const deleteCustomer = async (id) => {
     mode: "cors",
     headers: {"Content-Type": "application/json"}
   })
+  console.log(response.status)
   return response
 }
 
