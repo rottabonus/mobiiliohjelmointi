@@ -17,7 +17,7 @@ const handleFormSubmit = async (e) => {
     customer: `http://customerrest.herokuapp.com/api/customers/${id}`
   }
 
-  console.log('will send this:', object)
+  //console.log('will send this:', object)
   await trainingService.create(object)
 }
 
