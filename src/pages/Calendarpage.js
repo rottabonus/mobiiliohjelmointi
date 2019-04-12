@@ -10,7 +10,7 @@ const Calendarpage = () => {
 
   const fetchData = async () => {
     const trainings = await trainingService.fetchAll()
-    const calendarTrainings = trainings.map(elem => ({title: elem.activity, start: new Date(elem.date), end: times.addMinutes(elem.date, elem.duration)}))
+    const calendarTrainings = trainings.map(elem => ({title: elem.activity, start: times.formatDate(elem.date), end: times.addMinutes(elem.date, elem.duration)}))
     setTrainings(calendarTrainings)
 }
 
@@ -18,11 +18,14 @@ useEffect(() => {
  fetchData()
 }, [])
 
+const show = (e) => {
+  console.log(e)
+}
 
   return (
     <div>
     <h2> Calendar </h2>
-    <MyCalendar events={trainings} localizer={localizer} />
+    <MyCalendar events={trainings} localizer={localizer} show={show} />
     </div>
 
   )
