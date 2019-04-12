@@ -1,6 +1,9 @@
 import React, { useState , useEffect} from 'react'
 import List from './List'
 import trainingService from '../services/trainings'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
 
 const TrainingTable = () => {
 
@@ -40,9 +43,30 @@ const TrainingTable = () => {
 
     const deleteTraining = async (item) => {
       const id = item.links[0].href.match(/\d+/)
-      await trainingService.deleteTraining(id)
-      fetchData()
+        await trainingService.deleteTraining(id)
+          fetchData()
     }
+
+    const confirm = (item) => {
+    confirmAlert(
+      {
+         title: 'Confirm to delete',
+         message: 'Are you sure want to delete training',
+         buttons:
+         [{
+            label: 'Yes',
+            onClick: () => deleteTraining(item)},
+           {
+             label: 'No',
+             onClick: () => confirmation("no")
+        }]
+       })
+     }
+
+    const confirmation = (input) => {
+      console.log(input)
+    }
+
 
 
   return (
@@ -51,9 +75,10 @@ const TrainingTable = () => {
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
   <table>
   <thead><tr>{trainingHeaders.map((header, i) => <th key={i} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}<th>delete</th></tr></thead>
-  <List data={trainingsToShow} deleteTraining={deleteTraining} />
+  <List data={trainingsToShow} deleteTraining={confirm} />
   </table>
   </div>
+
   )
 }
 

@@ -1,6 +1,9 @@
 import React, { useState , useEffect} from 'react'
 import List from './List'
 import customerService from '../services/customers'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
 
 const CustomerTable = () => {
 
@@ -43,13 +46,33 @@ const customersToShow = customers.filter(a => a[filterKey].toLowerCase().include
     setFilterString(e.target.value)
   }
 
+  const confirm = (item) => {
+  confirmAlert(
+    {
+       title: 'Confirm to delete',
+       message: 'Are you sure want to delete training',
+       buttons:
+       [{
+          label: 'Yes',
+          onClick: () => deleteCustomer(item)},
+         {
+           label: 'No',
+           onClick: () => confirmation("no")
+      }]
+     })
+   }
+
+  const confirmation = (input) => {
+    console.log(input)
+  }
+
   return (
   <div className="container">
   <p> Filter by <b>{filterKey}</b> </p>
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
     <table>
       <thead><tr>{customerHeaders.map((header, i) => <th key={i} className={`priority-${i+1}`} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}<th>add</th><th>delete</th></tr></thead>
-        <List data={customersToShow} deleteCustomer={deleteCustomer}/>
+        <List data={customersToShow} deleteCustomer={confirm}/>
     </table>
 
   </div>
