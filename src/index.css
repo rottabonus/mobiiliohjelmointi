@@ -1,5 +1,8 @@
-table { width: 640px; } /* Make table wider */
-td, th { border: 1px solid #CCC; } /* Add borders to cells */
+table {
+  width: 640px;
+  background-color: #f2f2f2
+   }
+td, th { border: 1px solid #CCC; }
 input[type=text], input[type=email], select, textarea{
   width: 100%;
   padding: 12px;
@@ -32,7 +35,7 @@ input[type=submit] {
 .container {
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
+  width: 100%;
 }
 
 .col-25 {
@@ -51,6 +54,10 @@ input[type=submit] {
   content: "";
   display: table;
   clear: both;
+}
+
+th:hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1225px) and (min-width: 1045px) {

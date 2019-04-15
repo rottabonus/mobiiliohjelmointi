@@ -1,8 +1,9 @@
 import React, { useState , useEffect} from 'react'
 import List from './List'
 import trainingService from '../services/trainings'
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
+import times from '../services/times'
 
 
 const TrainingTable = () => {
@@ -15,7 +16,8 @@ const TrainingTable = () => {
 
   const fetchData = async () => {
     const trainings = await trainingService.fetchAll()
-    setTrainings(trainings)
+    const formatted = trainings.map((elem, i) => i ={ date: times.formatDate(elem.date), activity: elem.activity, duration: elem.duration })
+    setTrainings(formatted)
     const values = Object.values(trainings[0])
     const keys = Object.keys(trainings[0])
     const filteredVals = values.filter(val => typeof val === 'string')
@@ -40,7 +42,6 @@ const TrainingTable = () => {
     }
   }
 
-
     const deleteTraining = async (item) => {
       const id = item.links[0].href.match(/\d+/)
         await trainingService.deleteTraining(id)
@@ -58,19 +59,13 @@ const TrainingTable = () => {
             onClick: () => deleteTraining(item)},
            {
              label: 'No',
-             onClick: () => confirmation("no")
+             onClick: () => console.log('no')
         }]
        })
      }
 
-    const confirmation = (input) => {
-      console.log(input)
-    }
-
-
-
   return (
-  <div className="container">
+  <div>
   <p> Filter by <b>{filterKey}</b> </p>
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
   <table>
