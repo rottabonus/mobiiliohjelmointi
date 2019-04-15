@@ -5,8 +5,12 @@ const getLocalizer = () => {
   return BigCalendar.momentLocalizer(moment)
 }
 
-const formatDate = (input) => {
+const convertToDate = (input) => {
   return new Date(input)
+}
+
+const formatDate = (input) => {
+  return new Date(input).toLocaleDateString('fi-FI')
 }
 
 const addMinutes = (date, minutes) => {
@@ -15,4 +19,4 @@ const addMinutes = (date, minutes) => {
     return new Date(now);
 }
 
-export default { getLocalizer, formatDate, addMinutes }
+export default { getLocalizer, formatDate, addMinutes, convertToDate }

@@ -10,7 +10,7 @@ const Calendarpage = () => {
 
   const fetchData = async () => {
     const trainings = await trainingService.fetchAll()
-    const calendarTrainings = trainings.map(elem => ({title: elem.activity, start: times.formatDate(elem.date), end: times.addMinutes(elem.date, elem.duration)}))
+    const calendarTrainings = trainings.map(elem => ({title: elem.activity, start: times.convertToDate(elem.date), end: times.addMinutes(elem.date, elem.duration)}))
     setTrainings(calendarTrainings)
 }
 
