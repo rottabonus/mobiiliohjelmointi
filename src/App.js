@@ -53,23 +53,13 @@ const { classes } = this.props;
             </ListItem>
           ))}
         </List>
-        <Divider />
-        <List>
-          {['customers', 'trainings'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <Link to={`/${text}`}><InboxIcon /></Link> :  <Link to={`/${text}`}><MailIcon /></Link>}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
       </div>
     )
 
     return (
   <Router>
       <div>
-
-        <Button onClick={this.toggleDrawer('left', true)}>Open Left</Button>
+        <Button onClick={this.toggleDrawer('left', true)}>Navigation</Button>
         <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>
           <div
             tabIndex={0}
@@ -83,11 +73,6 @@ const { classes } = this.props;
         <Route path="/list" render={() => <Hookpage/>}/>
         <Route path="/add" render={() => <Formspage/>}/>
         <Route path="/calendar" render={() => <Calendarpage/>}/>
-        <Route path="/addtraining" render={() => <Hookpage/>}/>
-        <Route path="/customers" render={() => <Formspage/>}/>
-        <Route path="/trainings" render={() => <Calendarpage/>}/>
-        <Route path="/customers" render={() => <CustomerTable/>}/>
-        <Route path="/trainings" render={() => <TrainingTable/>}/>
       </div>
 </Router>
     );
