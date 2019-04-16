@@ -30,7 +30,7 @@ const handleFormSubmit = async (e) => {
     <label htmlFor="activity">activity</label>
     <input id="activity" placeholder="activity" type="text" {...activity} required /><br />
     <label htmlFor="duration">duration</label>
-    <input id="duration" placeholder="duration" type="number" {...duration} required /><br />
+    <input id="duration" placeholder="duration" min="1" type="number" {...duration} required /><br />
     <label htmlFor="date">date</label>
     <input id="date" placeholder="date" type="date" {...date} required /><br />
     <br />

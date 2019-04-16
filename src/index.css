@@ -94,7 +94,7 @@ th:hover {
 }
 
 
- @media screen and (max-width: 1200px) and (min-width: 765px) {
+ @media screen and (max-width: 1200px) {
    .priority-7{
      display:none;
    }
@@ -106,7 +106,7 @@ th:hover {
    }
  }
 
- @media screen and (max-width: 930px) and (min-width: 450px) {
+ @media screen and (max-width: 930px) {
 
    .priority-7{
      display:none;
@@ -122,7 +122,17 @@ th:hover {
    }
  }
 
- @media screen  and (max-width: 650px) and (min-width: 300px) {
+ @media screen  and (max-width: 650px) {
+
+   table {
+     width: 400px;
+      }
+   td, th {
+           width: 55%;
+           font-size: 65%;
+         }
+
+
    .priority-7{
      display:none;
    }
@@ -133,13 +143,20 @@ th:hover {
      display:none;
    }
    .priority-4{
-     display:none;
-   }
-   .priority-3{
      display:none;
    }
 }
    @media screen and (max-width: 500px) {
+
+     table {
+       width: 300px;
+        }
+     td, th {
+             width: 45%;
+             font-size: 55%;
+           }
+
+
      .priority-7{
        display:none;
      }
@@ -152,14 +169,26 @@ th:hover {
      .priority-4{
        display:none;
      }
-     .priority-3{
-       display:none;
-     }
-     .priority-2{
-       display:none;
-     }
-     .priority-1{
-       display:none;
-     }
 
+}
+
+    @media screen  and (max-width: 300px) {
+
+       table {width: 220px;}
+       td, th {width: 30%;
+               font-size: 40%;}
+
+
+       .priority-7{
+         display:none;
+       }
+       .priority-6{
+         display:none;
+       }
+       .priority-5{
+         display:none;
+       }
+       .priority-4{
+         display:none;
+       }
  }
