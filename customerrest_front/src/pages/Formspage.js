@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import Divider from '@material-ui/core/Divider'
 
 const Formspage = (props) => {
   const { classes } = props
@@ -16,7 +15,7 @@ const Formspage = (props) => {
       <ListItem button><Link to="/customerform">
         <ListItemText primary="add customer" /></Link></ListItem>
     <div>
-      <Route path="/customerform" render={() => <CustomerForm/>}/>
+      <Route path="/customerform" render={(props) => <CustomerForm {...props}/>}/>
     </div>
     </List>
   </Router>

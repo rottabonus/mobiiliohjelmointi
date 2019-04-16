@@ -66,7 +66,7 @@ const customersToShow = customers.filter(a => a[filterKey].toLowerCase().include
   <p> Filter by <b>{filterKey}</b> </p>
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
     <table>
-      <thead><tr>{customerHeaders.map((header, i) => <th key={i} className={`priority-${i+1}`} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}<th>add</th><th>delete</th></tr></thead>
+      <thead><tr>{customerHeaders.map((header, i) => <th key={i} className={`priority-${i+1}`} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}<th className="notHoverableHeader">ADD TRAINING</th><th className="notHoverableHeader">DELETE</th></tr></thead>
         <List data={customersToShow} deleteCustomer={confirm}/>
     </table>
 

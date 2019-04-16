@@ -16,7 +16,7 @@ const TrainingTable = () => {
 
   const fetchData = async () => {
     const trainings = await trainingService.fetchAll()
-    const formatted = trainings.map((elem, i) => i ={ date: times.formatDate(elem.date), activity: elem.activity, duration: elem.duration })
+    const formatted = trainings.map((elem, i) => i ={ date: times.formatDate(elem.date), activity: elem.activity, duration: elem.duration, content: elem.content, links: elem.links })
     setTrainings(formatted)
     const values = Object.values(trainings[0])
     const keys = Object.keys(trainings[0])
@@ -43,6 +43,7 @@ const TrainingTable = () => {
   }
 
     const deleteTraining = async (item) => {
+      console.log(item)
       const id = item.links[0].href.match(/\d+/)
         await trainingService.deleteTraining(id)
           fetchData()
@@ -69,7 +70,7 @@ const TrainingTable = () => {
   <p> Filter by <b>{filterKey}</b> </p>
   <input label="filter" value={filterString} onChange={handleFilterChange}/>
   <table>
-  <thead><tr>{trainingHeaders.map((header, i) => <th key={i} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}<th>delete</th></tr></thead>
+  <thead><tr>{trainingHeaders.map((header, i) => <th className="sortableHeader" key={i} onClick={() => sortByKey(header)}>{header.toUpperCase()}</th>)}<th className="notHoverableHeader">DELETE</th></tr></thead>
   <List data={trainingsToShow} deleteTraining={confirm} />
   </table>
   </div>

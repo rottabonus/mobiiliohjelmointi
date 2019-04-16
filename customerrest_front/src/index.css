@@ -2,7 +2,8 @@ table {
   width: 640px;
   background-color: #f2f2f2
    }
-td, th { border: 1px solid #CCC; }
+td, th { border: 1px solid #CCC;
+          text-align: center;}
 input[type=text], input[type=email], select, textarea{
   width: 100%;
   padding: 12px;
@@ -10,6 +11,10 @@ input[type=text], input[type=email], select, textarea{
   border-radius: 4px;
   box-sizing: border-box;
   resize: vertical;
+}
+
+body  {
+  font-family: 'Roboto', sans-serif;
 }
 
 label {
@@ -21,6 +26,13 @@ label {
   height: 300px;
   width: 90%;
 }
+
+.sortableHeader:hover {
+  background-color: 'blue';
+  opacity: 0.5;
+  cursor: pointer;
+}
+
 
 input[type=submit] {
   background-color: #4CAF50;
@@ -58,6 +70,20 @@ input[type=submit] {
 
 th:hover {
     cursor: pointer;
+    background-color: #5c5c8a;
+    opacity: 0.5;
+}
+
+.hoverableIcon:hover{
+  cursor:pointer;
+}
+
+.hoverableIcon{
+  text-align: center;
+}
+
+.notHoverableHeader{
+   pointer-events: none;
 }
 
 @media screen and (max-width: 1225px) and (min-width: 1045px) {

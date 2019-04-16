@@ -2,7 +2,7 @@ import React from 'react'
 import useFormInput from '../Hooks/useFormInput'
 import customerService from '../services/customers'
 
-const CustomerForm = () => {
+const CustomerForm = (props) => {
 
   const firstname = useFormInput("")
   const lastname = useFormInput("")
@@ -24,6 +24,7 @@ const CustomerForm = () => {
       phone: phone.value
     }
     await customerService.create(object)
+    props.history.push("/customers")
   }
 
     return (
