@@ -15,11 +15,11 @@ const Hookpage = (props) => {
   <Router>
   <div>
     <List component="nav" className={classes.root}>
-        <ListItem button><Link to="/customers">
-          <ListItemText primary="customers" /></Link></ListItem>
+        <Link style={{ textDecoration: 'none' }} to="/customers"><ListItem button>
+          <ListItemText primary="customers" /></ListItem></Link>
           <Divider />
-          <ListItem button divider><Link to="/trainings">
-          <ListItemText primary="trainings" /></Link></ListItem>
+          <Link style={{ textDecoration: 'none' }} to="/trainings"><ListItem button divider>
+          <ListItemText primary="trainings" /></ListItem></Link>
       </List>
     <div>
       <Route path="/customers" render={() => <CustomerTable/>}/>
