@@ -13,18 +13,20 @@ const Hookpage = (props) => {
   const { classes } = props
   return (
   <Router>
+  <div>
     <List component="nav" className={classes.root}>
         <ListItem button><Link to="/customers">
           <ListItemText primary="customers" /></Link></ListItem>
           <Divider />
           <ListItem button divider><Link to="/trainings">
           <ListItemText primary="trainings" /></Link></ListItem>
+      </List>
     <div>
       <Route path="/customers" render={() => <CustomerTable/>}/>
       <Route path="/trainings" render={() => <TrainingTable/>}/>
-      <Route exact path="/addtraining/:id" render={({match}) => <TrainingForm id={match.params.id}/>}/>
+      <Route exact path="/addtraining/:id" render={(props) => <TrainingForm {...props} id={props.match.params.id}/>}/>
     </div>
-    </List>
+    </div>
   </Router>
   )
 }
@@ -34,6 +36,8 @@ const styles = theme => ({
     width: '100%',
     maxWidth: '360px',
     backgroundColor: theme.palette.background.paper,
+    display: 'flex',
+    flexDirection: 'row'
   },
 })
 

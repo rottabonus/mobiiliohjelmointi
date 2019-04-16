@@ -7,15 +7,14 @@ import './index.css'
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import CalendarIcon from '@material-ui/icons/CalendarToday';
+import PersonAdd from '@material-ui/icons/PersonAdd';
+import ListIcon from '@material-ui/icons/List';
 import { withStyles } from '@material-ui/core/styles';
-import CustomerTable from './components/CustomerTable'
-import TrainingTable from './components/TrainingTable'
+import Welcome from './components/Welcome'
 
 const styles = {
   list: {
@@ -24,33 +23,35 @@ const styles = {
   fullList: {
     width: 'auto',
   },
-};
+}
+
+const Icon = ({ index }) => {
+  if(index === 0){
+      return (<ListIcon />)
+  } else if (index === 1){
+    return (<PersonAdd />)
+  } return (<CalendarIcon />)
+}
+
 class TemporaryDrawer extends React.Component {
-  state = {
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  };
+  state = { left: false }
 
   toggleDrawer = (side, open) => () => {
-    this.setState({
-      [side]: open,
-    });
-  };
+    this.setState({ [side]: open })
+  }
+
 
   render() {
 const { classes } = this.props;
 
     const sideList = (
-
       <div className={classes.list}>
         <List>
           {['list', 'add', 'calendar'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon><Link to={`/${text}`}><InboxIcon /></Link></ListItemIcon>
+            <Link key={index} to={`/${text}`}><ListItem button key={text}>
+              <ListItemIcon><Icon index={index}/></ListItemIcon>
               <ListItemText primary={text} />
-            </ListItem>
+            </ListItem></Link>
           ))}
         </List>
       </div>
@@ -64,12 +65,11 @@ const { classes } = this.props;
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
-          >
+            onClick={this.toggleDrawer('left', false)}>
             {sideList}
           </div>
         </Drawer>
+        <Route exact path="/" render={() => <Welcome />}/>
         <Route path="/list" render={() => <Hookpage/>}/>
         <Route path="/add" render={() => <Formspage/>}/>
         <Route path="/calendar" render={() => <Calendarpage/>}/>

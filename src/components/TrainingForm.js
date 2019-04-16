@@ -2,7 +2,7 @@ import React from 'react'
 import useFormInput from '../Hooks/useFormInput'
 import trainingService from '../services/trainings'
 
-const TrainingForm = ({ id }) => {
+const TrainingForm = (props) => {
 
 const activity = useFormInput("")
 const duration = useFormInput("")
@@ -14,11 +14,12 @@ const handleFormSubmit = async (e) => {
     date: date.value,
     duration: duration.value,
     activity: activity.value,
-    customer: `http://customerrest.herokuapp.com/api/customers/${id}`
+    customer: `http://customerrest.herokuapp.com/api/customers/${props.id}`
   }
 
   //console.log('will send this:', object)
   await trainingService.create(object)
+  props.history.push("/trainings")
 }
 
 
