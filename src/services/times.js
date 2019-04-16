@@ -14,9 +14,9 @@ const formatDate = (input) => {
 }
 
 const addMinutes = (date, minutes) => {
-  const newDateObject = new Date(date);
-  const now = newDateObject.setMinutes(newDateObject.getMinutes() + 30); // timestamp
-    return new Date(now);
+  const newDateObject = new Date(date)
+  const now = newDateObject.setMinutes(newDateObject.getMinutes() + 30)
+    return new Date(now)
 }
 
 export default { getLocalizer, formatDate, addMinutes, convertToDate }

@@ -12,8 +12,8 @@ const Formspage = (props) => {
   return (
   <Router>
     <List component="nav" className={classes.root}>
-      <ListItem button><Link to="/customerform">
-        <ListItemText primary="add customer" /></Link></ListItem>
+      <Link style={{ textDecoration: 'none' }} to="/customerform"><ListItem button>
+        <ListItemText primary="add customer" /></ListItem></Link>
     <div>
       <Route path="/customerform" render={(props) => <CustomerForm {...props}/>}/>
     </div>

@@ -48,7 +48,7 @@ const { classes } = this.props;
       <div className={classes.list}>
         <List>
           {['list', 'add', 'calendar'].map((text, index) => (
-            <Link key={index} to={`/${text}`}><ListItem button key={text}>
+            <Link style={{ textDecoration: 'none' }} key={index} to={`/${text}`}><ListItem button key={text}>
               <ListItemIcon><Icon index={index}/></ListItemIcon>
               <ListItemText primary={text} />
             </ListItem></Link>
