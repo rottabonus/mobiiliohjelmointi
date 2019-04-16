@@ -10,13 +10,14 @@ const TrainingTable = () => {
 
   const [trainings, setTrainings] = useState([])
   const [filterString, setFilterString] = useState('')
+  const [sorted, setSorted] = useState(0)
   const [trainingHeaders, setTrainingheaders] = useState([])
   const [filterKey, setFilterkey] = useState(['activity'])
   const trainingsToShow = trainings.filter(a => a[filterKey].toString().toLowerCase().includes(filterString.toLowerCase()))
 
   const fetchData = async () => {
     const trainings = await trainingService.fetchAll()
-    const formatted = trainings.map((elem, i) => i ={ date: times.formatDate(elem.date), activity: elem.activity, duration: elem.duration, content: elem.content, links: elem.links })
+    const formatted = trainings.map((elem, i) => i ={ date: times.formatDate(elem.date), duration: elem.duration, activity: elem.activity, content: elem.content, links: elem.links })
     setTrainings(formatted)
     const values = Object.values(trainings[0])
     const keys = Object.keys(trainings[0])
@@ -34,16 +35,31 @@ const TrainingTable = () => {
   }, [])
 
   const sortByKey = (key) => {
+
+    if (filterKey === key && sorted === 0){
+      setSorted(1)
+      if(key === 'date'){
+         setTrainings([...trainings].sort((a, b) => times.convertToDate(b[key]) - times.convertToDate(a[key])))
+      } else if (key === 'activity'){
+        setTrainings([...trainings].sort((a, b) => a[key].localeCompare(b[key])))
+      } else {
+        setTrainings([...trainings].sort((a, b) => b[key] - a[key]))
+      }
+    } else {
+      setSorted(0)
     setFilterkey(key)
-    if(typeof trainings[0][key] === 'string'){
-      setTrainings([...trainings].sort((a, b) => a[key].localeCompare(b[key])))
+     if(key === 'date'){
+         setTrainings([...trainings].sort((a, b) => times.convertToDate(a[key]) - times.convertToDate(b[key])))
+      }
+     else if (typeof trainings[0][key] === 'string'){
+      setTrainings([...trainings].sort((a, b) => b[key].localeCompare(a[key])))
     } else {
       setTrainings([...trainings].sort((a, b) => a[key] - b[key]))
     }
   }
+  }
 
     const deleteTraining = async (item) => {
-      console.log(item)
       const id = item.links[0].href.match(/\d+/)
         await trainingService.deleteTraining(id)
           fetchData()

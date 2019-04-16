@@ -9,6 +9,7 @@ const CustomerTable = () => {
 const [customers, setCustomers] = useState([])
 const [filterString, setFilterString] = useState('')
 const [customerHeaders, setCustomerheaders] = useState([])
+const [sorted, setSorted] = useState([0])
 const [filterKey, setFilterkey] = useState(['firstname'])
 const customersToShow = customers.filter(a => a[filterKey].toLowerCase().includes(filterString.toLowerCase()))
 
@@ -27,12 +28,24 @@ const customersToShow = customers.filter(a => a[filterKey].toLowerCase().include
   }, [])
 
   const sortByKey = (key) => {
-    setFilterkey(key)
-    if(typeof customers[0][key] === 'string'){
-      setCustomers([...customers].sort((a, b) => a[key].localeCompare(b[key])))
+    if (filterKey === key && sorted === 0){
+      setFilterkey(key)
+      setSorted(1)
+      if(typeof customers[0][key] === 'string'){
+        setCustomers([...customers].sort((a, b) => b[key].localeCompare(a[key])))
+      } else {
+        setCustomers([...customers].sort((a, b) => b[key] - a[key]))
+      }
     } else {
-      setCustomers([...customers].sort((a, b) => a[key] - b[key]))
+      setFilterkey(key)
+      setSorted(0)
+      if(typeof customers[0][key] === 'string'){
+        setCustomers([...customers].sort((a, b) => a[key].localeCompare(b[key])))
+      } else {
+        setCustomers([...customers].sort((a, b) => a[key] - b[key]))
+      }
     }
+
   }
 
   const deleteCustomer = async (item) => {
