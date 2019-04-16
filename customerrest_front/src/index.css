@@ -93,88 +93,49 @@ th:hover {
    pointer-events: none;
 }
 
+@media screen  and (max-width: 950px) {
 
- @media screen and (max-width: 1200px) {
-   .priority-7{
-     display:none;
-   }
-   .priority-6{
-     display:none;
-   }
-   .priority-5{
-     display:none;
-   }
- }
+  table {
+    width: 550px;
+     }
+  td, th {
+          width: 60%;
+          font-size: 70%;
+        }
+}
 
- @media screen and (max-width: 930px) {
 
-   .priority-7{
-     display:none;
-   }
-   .priority-6{
-     display:none;
-   }
-   .priority-5{
-     display:none;
-   }
-   .priority-4{
-     display:none;
-   }
- }
-
- @media screen  and (max-width: 650px) {
+ @media screen  and (max-width: 750px) {
 
    table {
-     width: 400px;
+     width: 350px;
       }
    td, th {
-           width: 55%;
-           font-size: 65%;
+           width: 50%;
+           font-size: 60%;
          }
-
-
-   .priority-7{
-     display:none;
-   }
-   .priority-6{
-     display:none;
-   }
-   .priority-5{
-     display:none;
-   }
-   .priority-4{
-     display:none;
-   }
 }
-   @media screen and (max-width: 500px) {
+   @media screen and (max-width: 620px) {
 
      table {
-       width: 300px;
+       width: 250px;
         }
      td, th {
-             width: 45%;
-             font-size: 55%;
+             width: 40%;
+             font-size: 50%;
            }
 
-
-     .priority-7{
-       display:none;
-     }
-     .priority-6{
-       display:none;
-     }
-     .priority-5{
-       display:none;
-     }
-     .priority-4{
-       display:none;
-     }
-
+           .priority-7{
+             display:none;
+           }
+           .priority-6{
+             display:none;
+           }
 }
 
     @media screen  and (max-width: 300px) {
 
-       table {width: 220px;}
+       table {width: 150px;}
        td, th {width: 30%;
                font-size: 40%;}
 
