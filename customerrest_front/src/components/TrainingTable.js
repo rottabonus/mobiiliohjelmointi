@@ -8,7 +8,7 @@ import times from '../services/times'
 
 const TrainingTable = () => {
 
-  const [trainings, setTrainings] = useState([])
+   const [trainings, setTrainings] = useState([])
   const [filterString, setFilterString] = useState('')
   const [sorted, setSorted] = useState(0)
   const [trainingHeaders, setTrainingheaders] = useState([])
@@ -16,11 +16,11 @@ const TrainingTable = () => {
   const trainingsToShow = trainings.filter(a => a[filterKey].toString().toLowerCase().includes(filterString.toLowerCase()))
 
   const fetchData = async () => {
-    const trainings = await trainingService.fetchAll()
-    const formatted = trainings.map((elem, i) => i ={ date: times.formatDate(elem.date), duration: elem.duration, activity: elem.activity, content: elem.content, links: elem.links })
+    const trainings = await trainingService.getTrainings()
+    const formatted = trainings.map((elem, i) => i ={ date: times.formatDate(elem.date), duration: elem.duration, activity: elem.activity, customer: elem.customer })
     setTrainings(formatted)
-    const values = Object.values(trainings[0])
-    const keys = Object.keys(trainings[0])
+    const values = Object.values(formatted[0])
+    const keys = Object.keys(formatted[0])
     const filteredVals = values.filter(val => typeof val === 'string')
     const filteredKey = keys.filter((key, i ) => i <= filteredVals.length)
     setTrainingheaders(filteredKey)
@@ -38,9 +38,7 @@ const TrainingTable = () => {
 
     if (filterKey === key && sorted === 0){
       setSorted(1)
-      if(key === 'date'){
-         setTrainings([...trainings].sort((a, b) => times.convertToDate(b[key]) - times.convertToDate(a[key])))
-      } else if (key === 'activity'){
+      if (typeof trainings[0][key] === 'string'){
         setTrainings([...trainings].sort((a, b) => a[key].localeCompare(b[key])))
       } else {
         setTrainings([...trainings].sort((a, b) => b[key] - a[key]))
@@ -48,10 +46,7 @@ const TrainingTable = () => {
     } else {
       setSorted(0)
     setFilterkey(key)
-     if(key === 'date'){
-         setTrainings([...trainings].sort((a, b) => times.convertToDate(a[key]) - times.convertToDate(b[key])))
-      }
-     else if (typeof trainings[0][key] === 'string'){
+     if (typeof trainings[0][key] === 'string'){
       setTrainings([...trainings].sort((a, b) => b[key].localeCompare(a[key])))
     } else {
       setTrainings([...trainings].sort((a, b) => a[key] - b[key]))

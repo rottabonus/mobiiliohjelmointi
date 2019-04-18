@@ -6,6 +6,18 @@ const fetchAll = async () => {
   return data.content
 }
 
+const getTrainings = async () => {
+    let response = await fetch('https://customerrest.herokuapp.com/gettrainings');
+  let data = await response.json()
+  console.log(response.status)
+ const trainings = data.map((elem, i) => i ={
+                            date: elem.date, 
+                            activity: elem.activity, 
+                            duration: elem.duration,
+                            customer: elem.customer.firstname + " " + elem.customer.lastname})
+  return trainings
+}
+
 const create = async (object) => {
   let response = await fetch('https://customerrest.herokuapp.com/api/trainings',
   { method: "POST",
@@ -26,4 +38,4 @@ const deleteTraining = async (id) => {
   return response.status
 }
 
-export default { fetchAll, create, deleteTraining }
+export default { fetchAll, create, deleteTraining, getTrainings }
