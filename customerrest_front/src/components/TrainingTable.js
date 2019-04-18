@@ -19,11 +19,7 @@ const TrainingTable = () => {
     const trainings = await trainingService.getTrainings()
     const formatted = trainings.map((elem, i) => i ={ id:elem.id, date: times.formatDate(elem.date), duration: elem.duration, activity: elem.activity, customer: elem.customer })
     setTrainings(formatted)
-    const values = Object.values(formatted[0])
-    const keys = Object.keys(formatted[0])
-    const filteredVals = values.filter(val => typeof val === 'string')
-    const filteredKey = keys.filter((key, i ) => i <= filteredVals.length)
-    setTrainingheaders(filteredKey)
+    setTrainingheaders(Object.keys(formatted[0]))
   }
 
   const handleFilterChange = (e) => {
