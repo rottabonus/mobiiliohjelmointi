@@ -11,8 +11,9 @@ const getTrainings = async () => {
   let data = await response.json()
   console.log(response.status)
  const trainings = data.map((elem, i) => i ={
-                            date: elem.date, 
-                            activity: elem.activity, 
+                            id: elem.id,
+                            date: elem.date,
+                            activity: elem.activity,
                             duration: elem.duration,
                             customer: elem.customer.firstname + " " + elem.customer.lastname})
   return trainings

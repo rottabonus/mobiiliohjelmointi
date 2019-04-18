@@ -17,7 +17,7 @@ const TrainingTable = () => {
 
   const fetchData = async () => {
     const trainings = await trainingService.getTrainings()
-    const formatted = trainings.map((elem, i) => i ={ date: times.formatDate(elem.date), duration: elem.duration, activity: elem.activity, customer: elem.customer })
+    const formatted = trainings.map((elem, i) => i ={ id:elem.id, date: times.formatDate(elem.date), duration: elem.duration, activity: elem.activity, customer: elem.customer })
     setTrainings(formatted)
     const values = Object.values(formatted[0])
     const keys = Object.keys(formatted[0])
@@ -55,8 +55,7 @@ const TrainingTable = () => {
   }
 
     const deleteTraining = async (item) => {
-      const id = item.links[0].href.match(/\d+/)
-        await trainingService.deleteTraining(id)
+        await trainingService.deleteTraining(item.id)
           fetchData()
     }
 

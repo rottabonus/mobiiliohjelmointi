@@ -8,6 +8,9 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
+import FitnessIcon from '@material-ui/icons/FitnessCenter';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import PersonAdd from '@material-ui/icons/PersonAdd';
 
 const Hookpage = (props) => {
   const { classes } = props
@@ -16,10 +19,14 @@ const Hookpage = (props) => {
   <div>
     <List component="nav" className={classes.root}>
         <Link style={{ textDecoration: 'none' }} to="/customers"><ListItem button>
-          <ListItemText primary="customers" /></ListItem></Link>
+          <ListItemText primary="customers" />
+              <ListItemIcon><PersonAdd /></ListItemIcon>
+          </ListItem></Link>
           <Divider />
           <Link style={{ textDecoration: 'none' }} to="/trainings"><ListItem button divider>
-          <ListItemText primary="trainings" /></ListItem></Link>
+          <ListItemText primary="trainings" />
+            <ListItemIcon><FitnessIcon /></ListItemIcon>
+          </ListItem></Link>
       </List>
     <div>
       <Route path="/customers" render={() => <CustomerTable/>}/>
